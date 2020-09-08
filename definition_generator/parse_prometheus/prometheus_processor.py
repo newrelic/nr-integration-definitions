@@ -58,7 +58,6 @@ def getServiceObj(output, serviceName):
     output[serviceName] = serviceObj
     serviceObj["service"]=serviceName
     serviceObj["display_name"]=capitalise(serviceName)
-    serviceObj["provider"]="prometheus"
     serviceObj["entities"]=[]
     return serviceObj
   

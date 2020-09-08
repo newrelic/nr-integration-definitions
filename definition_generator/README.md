@@ -11,7 +11,7 @@ Follow this tutorial to get started with Definition Generator!
 Definition_generator is a python script helping to generate an `integration definition` file 
  that can be used to define metrics and entities with `nri-prometheus` New Relic integration.
  
-It can scrape the output of an exporter and translate it to a definition file. In case the endpoint is not reachable 
+It can scrape prometheus metrics and translate it to a definition file. In case the endpoint is not reachable 
 can also be used a local file having as content the prometheus output.
 
 Example input file or endpoint:
@@ -56,7 +56,8 @@ entities:
 
 You will need to meet the following prerequisites:
  - have Docker installed and running.
- - you need to be able to reach an exporter endpoint from the container, or the output of a exporter endpoint saved locally.
+ - you need to be able to reach an exporter endpoint (or an application exposing prometheus metrics) from the container, 
+ or prometheus metrics saved locally.
  - you should have cloned this repository and being into the `./definition_generator` folder.
 
 
@@ -74,7 +75,7 @@ You will use such image as a working environment to run the Python command.
 
 ### 3. <a name='GenerateDefinitionFile'></a> Definition Generator - Generate definition file 
 
-It can scrape the output of an exporter and translate it to a definition file. In case the endpoint is not reachable an 
+It can scrape the output of an endpoint exposing prometheus metrics and translate it to a definition file. In case the endpoint is not reachable an 
 input file can be used as well.
 
 #### From prometheus endpoint
@@ -105,7 +106,36 @@ $ docker run -v $(pwd)/parse_prometheus/sample.prometheus:/input_file definition
 
 You have now locally a definition file `definition_generated` with all the metrics associated with the correspondent entities. 
 
-You only need to rename it according to the technology monitored, to place it in the proper folder and open
+After generating the definition file, since prometheus protocol is quite flexible regarding the naming convention, you should review the generated file.
+In some cases you might have to group some entities into a unique one or remove not useful or misleading metrics.
+
+Taking for example the Raven DB exporter definition generated, we can see that many entities can be vague or would contain a metric only, es:
+
+```yaml
+service: ravendb
+display_name: Ravendb
+provider: prometheus
+entities:
+  - name: is
+    metrics:
+    - provider_name: ravendb_is_leader
+      description: If 1, then node is the cluster leader, otherwise 0
+      type: gauge
+  - name: mapindex
+    metrics:
+    - provider_name: ravendb_mapindex_indexed
+      description: Server-wide map index indexed count
+      type: counter
+  - name: mapreduceindex
+    metrics:
+    - provider_name: ravendb_mapreduceindex_mapped
+      description: Server-wide map-reduce index mapped count
+      type: counter
+```
+
+This can be grouped together under a unique entity `node`
+
+Once reviewed you only need to rename it according to the technology monitored, to place it in the proper folder and open
  a PR describing the which was the exporter used to generate the file and its version.
  
 Please notice that file integration definition generated for prometheus exporters used by more people are more likely to
