@@ -1,5 +1,13 @@
 # Definition Generator - Step-by-step tutorial
 
+Follow this tutorial to get started with Definition Generator!
+
+1. [Prerequisites](#Prerequisites)
+2. [Build the image](#BuildTheImage)
+3. [Generate definition file](#GenerateDefinitionFile)
+5. [What's next?](#Whatsnext)
+
+#### Introduction
 Definition_generator is a python script helping to generate an `integration definition` file 
  that can be used to define metrics and entities with `nri-prometheus` New Relic integration.
  
@@ -42,12 +50,7 @@ entities:
 [...]
 ```
 
-Follow this tutorial to get started with Flex!
 
-1. [Prerequisites](#Prerequisites)
-2. [Build the image](#BuildTheImage)
-3. [Generate definition file](#GenerateDefinitionFile)
-5. [What's next?](#Whatsnext)
 
 ### 1. <a name='Prerequisites'></a> Definition Generator - Prerequisites
 
@@ -98,7 +101,7 @@ For example running the command from the `./definition_generator` folder and usi
 $ docker run -v $(pwd)/parse_prometheus/sample.prometheus:/input_file definition_generator ./tools.py -v parse-prometheus -f /input_file  > definition_generated
 ```
 
-#### 4. <a name='Whatsnext'></a> Definition Generator - What's next?
+### 4. <a name='Whatsnext'></a> Definition Generator - What's next?
 
 You have now locally a definition file `definition_generated` with all the metrics associated with the correspondent entities. 
 
