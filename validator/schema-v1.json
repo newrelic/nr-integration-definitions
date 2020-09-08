@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "https://github.com/newrelic/nri-integration-definitions/schema-v1.json",
+  "title": "Infra integration definitions",
+  "type": "object",
+  "required": [
+    "service",
+    "display_name",
+    "entities"
+  ],
+  "properties": {
+    "provider": {
+      "type": "string",
+      "minLength": 3
+    },
+    "service": {
+      "type": "string",
+      "minLength": 2
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "entities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "metrics"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "namespace": {
+                "type": "string"
+              },
+              "dimensions": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "metrics": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "required": [
+                "provider_name"
+              ],
+              "properties": {
+                "provider_name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "gauge","Gauge",
+                    "count","Count","counter","Counter",
+                    "summary","prometheus-summary",
+                    "prometheus-histogram"
+                  ]
+                },
+                "unit": {
+                  "type": "string",
+                  "enum": [
+                    "Count",
+                    "Percent",
+                    "Ratio",
+                    "Seconds",
+                    "Centiseconds",
+                    "Milliseconds",
+                    "Microseconds",
+                    "Nanoseconds",
+                    "Bytes",
+                    "Kilobytes",
+                    "KilobytesPerSecond",
+                    "Megabytes",
+                    "BytesPerSecond",
+                    "BitsPerSecond",
+                    "MegabytesPerSecond",
+                    "MegabytesPerMillisecond",
+                    "CountPerSecond",
+                    "CountPerMinute",
+                    "GigabytesPerSecond",
+                    "Gibibytes",
+                    "Mebibytes",
+                    "dBm",
+                    "Gigabytes",
+                    "Terabytes",
+                    "Megahertz",
+                    "Watt",
+                    "Joule",
+                    "Other"
+                  ]
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "anyOf": [
+                {
+                  "required":["unit"]
+                 },
+                 {
+                  "required": ["type"]
+                 }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+FROM node:14.9-alpine
+
+WORKDIR /opt/local/newrelic
+
+ADD validator validator
+
+WORKDIR /opt/local/newrelic/validator
+
+RUN npm install
+
+WORKDIR /opt/local/newrelic
+
+ADD definitions/ definitions
+
+WORKDIR /opt/local/newrelic/validator
+
+CMD ["npm", "run", "check"]
