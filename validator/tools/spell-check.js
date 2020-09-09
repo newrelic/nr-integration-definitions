@@ -230,4 +230,4 @@ function splitComposedName(str){
   return result;
 }
 
-utils.getAllDefinitions().forEach(def => checkSpec(def))
+utils.getAllDefinitions(def => checkSpec(def))

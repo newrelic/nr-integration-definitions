@@ -3,7 +3,7 @@
   "description": "Spec files for Infrastructure integrations",
   "version": "1.0.0",
   "scripts": {
-    "validate-schema": "pajv validate --errors=json -s schema-v1.json -d '../definitions/*.yml'",
+    "validate-schema": "pajv validate --errors=json -s schema-v1.json -d '../definitions/*/*'",
     "lint": "node tools/linter.js",
     "check": "npm run validate-schema && npm run lint"
   },

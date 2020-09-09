@@ -29,9 +29,10 @@ const RULES = [
   }
 ]
 
-utils.getAllDefinitions().forEach(def => {
+utils.getAllDefinitions(def => {
   ENTITY_NAMES = new Set()
   def.entities.forEach(entity => {
+    
     METRIC_NAMES = new Set()
     RULES.forEach(rule => {
       try {
@@ -39,9 +40,10 @@ utils.getAllDefinitions().forEach(def => {
       } catch (errorMessage) {
         console.error(`Spec for ${def.service} violates rule "${rule.name}":`)
         console.error(errorMessage)
-
+        // terminate early
         process.exit(1)
       }
     })
   })
+  console.log(`=> processed ${def.service}... valid`)
 })
