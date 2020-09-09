@@ -8,10 +8,4 @@ WORKDIR /opt/local/newrelic/validator
 
 RUN npm install
 
-WORKDIR /opt/local/newrelic
-
-ADD definitions/ definitions
-
-WORKDIR /opt/local/newrelic/validator
-
 CMD ["npm", "run", "check"]
