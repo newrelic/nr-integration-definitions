@@ -1,0 +1,124 @@
+provider: azure
+service: machineLearning
+display_name: Machine Learning
+
+entities:
+# https://docs.microsoft.com/en-us/azure/azure-monitor/platform/metrics-supported#microsoftmachinelearningservicesworkspaces
+  - name: Workspace
+    properties:
+      resource_type: Microsoft.MachineLearningServices/workspaces
+
+    # List of metrics for this entity
+    metrics:
+      - provider_name: Completed Runs
+        nrdb_name: completedRuns
+        unit: Count
+        description: Number of runs completed successfully for this workspace
+
+      - provider_name: Started Runs
+        nrdb_name: startedRuns
+        unit: Count
+        description: Number of runs started for this workspace
+
+      - provider_name: Failed Runs
+        nrdb_name: failedRuns
+        unit: Count
+        description: Number of runs failed for this workspace
+
+      - provider_name: Model Register Succeeded
+        nrdb_name: modelRegisterSucceeded
+        unit: Count
+        description: Number of model registrations that succeeded in this workspace
+
+      - provider_name: Model Register Failed
+        nrdb_name: modelRegisterFailed
+        unit: Count
+        description: Number of model registrations that failed in this workspace
+
+      - provider_name: Model Deploy Started
+        nrdb_name: modelDeployStarted
+        unit: Count
+        description: Number of model deployments started in this workspace
+
+      - provider_name: Model Deploy Succeeded
+        nrdb_name: modelDeploySucceeded
+        unit: Count
+        description: Number of model deployments that succeeded in this workspace
+
+      - provider_name: Model Deploy Failed
+        nrdb_name: modelDeployFailed
+        unit: Count
+        description: Number of model deployments that failed in this workspace
+
+      - provider_name: Total Nodes
+        nrdb_name: totalNodes
+        unit: Count
+        description: Number of total nodes. This total includes some of Active Nodes, Idle Nodes, Unusable Nodes, Preempted Nodes, Leaving Nodes
+
+      - provider_name: Active Nodes
+        nrdb_name: activeNodes
+        unit: Count
+        description: Number of Acitve nodes. These are the nodes which are actively running a job.
+
+      - provider_name: Idle Nodes
+        nrdb_name: idleNodes
+        unit: Count
+        description: Number of idle nodes. Idle nodes are the nodes which are not running any jobs but can accept new job if available.
+
+      - provider_name: Unusable Nodes
+        nrdb_name: unusableNodes
+        unit: Count
+        description: Number of unusable nodes. Unusable nodes are not functional due to some unresolvable issue. Azure will recycle these nodes.
+
+      - provider_name: Preempted Nodes
+        nrdb_name: preemptedNodes
+        unit: Count
+        description: Number of preempted nodes. These nodes are the low priority nodes which are taken away from the available node pool.
+
+      - provider_name: Leaving Nodes
+        nrdb_name: leavingNodes
+        unit: Count
+        description: Number of leaving nodes. Leaving nodes are the nodes which just finished processing a job and will go to Idle state.
+
+      - provider_name: Total Cores
+        nrdb_name: totalCores
+        unit: Count
+        description: Number of total cores
+
+      - provider_name: Active Cores
+        nrdb_name: activeCores
+        unit: Count
+        description: Number of active cores
+
+      - provider_name: Idle Cores
+        nrdb_name: idleCores
+        unit: Count
+        description: Number of idle cores
+
+      - provider_name: Unusable Cores
+        nrdb_name: unusableCores
+        unit: Count
+        description: Number of unusable cores
+
+      - provider_name: Preempted Cores
+        nrdb_name: preemptedCores
+        unit: Count
+        description: Number of preempted cores
+
+      - provider_name: Leaving Cores
+        nrdb_name: leavingCores
+        unit: Count
+        description: Number of leaving cores
+
+      - provider_name: Quota Utilization Percentage
+        nrdb_name: quotaUtilization
+        unit: Percent
+        description: Percent of quota utilized
+
+      - provider_name: CpuUtilization
+        unit: Percent
+        description: CPU Utilization
+
+      - provider_name: GpuUtilization
+        unit: Percent
+        description: GPU Utilization

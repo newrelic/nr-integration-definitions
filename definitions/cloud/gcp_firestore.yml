@@ -1,0 +1,78 @@
+provider: gcp
+service: firestore
+display_name: Firestore
+properties:
+  resource_uri: firestore.googleapis.com
+entities:
+  - name: Request
+    properties:
+      labels:
+      - project_id
+      - module_id
+      - version_id
+    metrics:
+    - provider_name: api/request_count
+      unit: Count
+      properties:
+        labels:
+        - api_method
+        - response_code
+      description: Count of Firestore API calls.
+
+  - name: Instance
+    properties:
+      labels:
+      - project_id
+    metrics:
+    - provider_name: document/delete_count
+      unit: Count
+      properties:
+        labels:
+        - module
+        - version
+      description: The number of successful document deletes.
+
+    - provider_name: document/read_count
+      unit: Count
+      properties:
+        labels:
+        - module
+        - version
+        - type
+      description: The number of successful document reads from queries or lookups.
+
+    - provider_name: document/write_count
+      unit: Count
+      properties:
+        labels:
+        - module
+        - version
+        - op
+      description: The number of successful document writes.
+
+    - provider_name: network/active_connections
+      unit: Count
+      properties:
+        labels:
+        - module
+        - version
+      description: The number of active connections. Each mobile client will have one connection. Each listener in admin SDK will be one connection.
+
+    - provider_name: network/snapshot_listeners
+      unit: Count
+      properties:
+        labels:
+        - module
+        - version
+      description: The number of snapshot listeners currently registered across all connected clients.
+
+    - provider_name: rules/evaluation_count
+      unit: Count
+      properties:
+        labels:
+        - request_method
+        - ruleset_label
+        - version
+        - module
+        - result
+      description: The number of Cloud Firestore Security Rule evaluations performed in response to write (create, update, delete) or read (get, list) requests.

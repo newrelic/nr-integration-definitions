@@ -1,0 +1,163 @@
+provider: aws
+service: states
+display_name: Step Functions
+entities:
+  - name: StateMachine
+    properties:
+      arn_id: '{StateMachineArn}'
+      namespace: AWS/States
+      dimensions: [ StateMachineArn ]
+    metrics:
+      - provider_name: ExecutionTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the execution starts and the time it closes."
+      - provider_name: ExecutionThrottled
+        unit: Count
+        description: "The number of StateEntered events and retries that have been throttled. This is related to StateTransition throttling."
+      - provider_name: ExecutionsAborted
+        unit: Count
+        description: "The number of aborted or terminated executions."
+      - provider_name: ExecutionsFailed
+        unit: Count
+        description: "The number of failed executions."
+      - provider_name: ExecutionsStarted
+        unit: Count
+        description: "The number of started executions."
+      - provider_name: ExecutionsSucceeded
+        unit: Count
+        description: "The number of successfully completed executions."
+      - provider_name: ExecutionsTimedOut
+        unit: Count
+        description: "The number of executions that time out for any reason."
+
+  - name: Activity
+    properties:
+      arn_id: '{ActivityArn}'
+      namespace: AWS/States
+      dimensions: [ ActivityArn ]
+    metrics:
+      - provider_name: ActivityRunTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the activity starts and the time it closes."
+      - provider_name: ActivityScheduleTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, for which the activity stays in the schedule state."
+      - provider_name: ActivityTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the activity is scheduled and the time it closes."
+      - provider_name: ActivitiesFailed
+        unit: Count
+        description: "The number of failed activities."
+      - provider_name: ActivitiesHeartbeatTimedOut
+        unit: Count
+        description: "The number of activities that time out due to a heartbeat timeout."
+      - provider_name: ActivitiesScheduled
+        unit: Count
+        description: "The number of scheduled activities."
+      - provider_name: ActivitiesStarted
+        unit: Count
+        description: "The number of started activities."
+      - provider_name: ActivitiesSucceeded
+        unit: Count
+        description: "The number of successfully completed activities."
+      - provider_name: ActivitiesTimedOut
+        unit: Count
+        description: "The number of activities that time out on close."
+
+  - name: LambdaFunction
+    properties:
+      namespace: AWS/States
+      dimensions: [ LambdaFunctionArn ]
+    metrics:
+      - provider_name: LambdaFunctionRunTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the Lambda function starts and the time it closes."
+      - provider_name: LambdaFunctionScheduleTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, for which the Lambda function stays in the schedule state."
+      - provider_name: LambdaFunctionTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the Lambda function is scheduled and the time it closes."
+      - provider_name: LambdaFunctionsFailed
+        unit: Count
+        description: "The number of failed Lambda functions."
+      - provider_name: LambdaFunctionsScheduled
+        unit: Count
+        description: "The number of scheduled Lambda functions."
+      - provider_name: LambdaFunctionsStarted
+        unit: Count
+        description: "The number of started Lambda functions."
+      - provider_name: LambdaFunctionsSucceeded
+        unit: Count
+        description: "The number of successfully completed Lambda functions."
+      - provider_name: LambdaFunctionsTimedOut
+        unit: Count
+        description: "The number of Lambda functions that time out on close."
+
+  - name: ServiceIntegration
+    properties:
+      namespace: AWS/States
+      dimensions: [ ServiceIntegrationResourceArn ]
+    metrics:
+      - provider_name: ServiceIntegrationRunTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the Service Task starts and the time it closes."
+      - provider_name: ServiceIntegrationScheduleTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, for which the Service Task stays in the schedule state."
+      - provider_name: ServiceIntegrationTime
+        unit: Milliseconds
+        description: "The interval, in milliseconds, between the time the Service Task is scheduled and the time it closes."
+      - provider_name: ServiceIntegrationsFailed
+        unit: Count
+        description: "The number of failed Service Tasks."
+      - provider_name: ServiceIntegrationsScheduled
+        unit: Count
+        description: "The number of scheduled Service Tasks."
+      - provider_name: ServiceIntegrationsStarted
+        unit: Count
+        description: "The number of started Service Tasks."
+      - provider_name: ServiceIntegrationsSucceeded
+        unit: Count
+        description: "The number of successfully completed Service Tasks."
+      - provider_name: ServiceIntegrationsTimedOut
+        unit: Count
+        description: "The number of Service Tasks that time out on close."
+
+  - name: Service
+    properties:
+      namespace: AWS/States
+      dimensions: [ ServiceMetric ]
+    metrics:
+      - provider_name: ThrottledEvents
+        unit: Count
+        description: "The count of requests that have been throttled."
+      - provider_name: ProvisionedBucketSize
+        unit: Count
+        description: "The count of available requests per second."
+      - provider_name: ProvisionedRefillRate
+        unit: Count
+        description: "The count of requests per second that are allowed into the bucket."
+      - provider_name: ConsumedCapacity
+        unit: Count
+        description: "The count of requests per second."
+
+  - name: ApiUsage
+    properties:
+      namespace: AWS/States
+      dimensions: [ APIName ]
+      dimensions_name_to_key:
+        APIName: apiName
+    metrics:
+      - provider_name: ThrottledEvents
+        unit: Count
+        description: "The count of requests that have been throttled."
+      - provider_name: ProvisionedBucketSize
+        unit: Count
+        description: "The count of available requests per second."
+      - provider_name: ProvisionedRefillRate
+        unit: Count
+        description: "The count of requests per second that are allowed into the bucket."
+      - provider_name: ConsumedCapacity
+        unit: Count
+        description: "The count of requests per second."

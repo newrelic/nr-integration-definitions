@@ -1,0 +1,25 @@
+provider: gcp
+service: vpcaccess
+display_name: VPC Access
+properties:
+  resource_uri: vpcaccess.googleapis.com
+entities:
+  - name: Connector
+    properties:
+      labels:
+        - project_id
+        - location
+        - connector_name
+    metrics:
+      - provider_name: connector/received_bytes_count
+        unit: Bytes
+        description: Delta of bytes transferred by a VPC Access Connector.
+      - provider_name: connector/received_packets_count
+        unit: Count
+        description: Delta of packets received by a VPC Access Connector.
+      - provider_name: connector/sent_bytes_count
+        unit: Bytes
+        description: Delta of bytes transferred by a VPC Access Connector.
+      - provider_name: connector/sent_packets_count
+        unit: Count
+        description: Delta of packets sent by a VPC Access Connector.

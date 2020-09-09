@@ -1,0 +1,21 @@
+provider: aws
+service: appSync
+display_name: AppSync
+entities:
+  - name: Api
+    properties:
+      arn_id: apis/{GraphQLAPIId}
+      namespace: AWS/AppSync
+      dimensions: [ GraphQLAPIId ]
+      dimensions_name_to_key:
+        GraphQLAPIId: graphQLApiId
+    metrics:
+      - provider_name: 4XXError
+        unit: Count
+        description: "The number of errors captured as a result of invalid requests due to incorrect client configuration. Typically, these errors happen anywhere outside of the GraphQL execution. For example, this could be an incorrect JSON payload or an incorrect query in the request, when the service is throttled, or even a potential misconfiguration on the Auth settings."
+      - provider_name: 5XXError
+        unit: Count
+        description: "Errors encountered during the execution of a GraphQL query. For example, this could occur when a query request is initiated for an empty or incorrect schema, if the Amazon Cognito user pool ID or AWS Region is invalid. Alternatively, this could also happen if AWS AppSync encounters an issue during an execution of a request."
+      - provider_name: Latency
+        unit: Milliseconds
+        description: "The time between when AWS AppSync receives a request from a client and when it returns a response to the client. This doesn't include the network latency encountered for a response to reach the end devices."

@@ -1,0 +1,91 @@
+provider: azure
+service: dataFactory
+display_name: Data Factory
+entities:
+  - name: DataFactory
+    properties:
+      resource_type: Microsoft.DataFactory/datafactories
+    metrics:
+      - provider_name: FailedRuns
+        unit: Count
+        description: Failed Runs
+
+      - provider_name: SuccessfulRuns
+        unit: Count
+        description: Failed Runs
+
+  - name: Factory
+    properties:
+      resource_type: Microsoft.DataFactory/factories
+    metrics:
+      - provider_name: PipelineFailedRuns
+        unit: Count
+        description: Failed pipeline runs metrics
+
+      - provider_name: PipelineSucceededRuns
+        unit: Count
+        description: Succeeded pipeline runs metrics
+
+      - provider_name: PipelineCancelledRuns
+        unit: Count
+        description: Cancelled pipeline runs metrics
+
+      - provider_name: ActivityFailedRuns
+        unit: Count
+        description: Failed activity runs metrics
+
+      - provider_name: ActivitySucceededRuns
+        unit: Count
+        description: Succeeded activity runs metrics
+
+      - provider_name: ActivityCancelledRuns
+        unit: Count
+        description: Cancelled activity runs metrics
+
+      - provider_name: TriggerFailedRuns
+        unit: Count
+        description: Failed trigger runs metrics
+
+      - provider_name: TriggerSucceededRuns
+        unit: Count
+        description: Succeeded trigger runs metrics
+
+      - provider_name: TriggerCancelledRuns
+        unit: Count
+        description: Cancelled trigger runs metrics
+
+      - provider_name: IntegrationRuntimeCpuPercentage
+        unit: Percent
+        description: Integration runtime CPU utilization
+
+      - provider_name: IntegrationRuntimeAvailableMemory
+        unit: Bytes
+        description: Integration runtime available memory
+
+      - provider_name: IntegrationRuntimeAverageTaskPickupDelay
+        unit: Seconds
+        description: Integration runtime queue duration
+
+      - provider_name: IntegrationRuntimeQueueLength
+        unit: Count
+        description: Integration runtime queue length
+
+      - provider_name: IntegrationRuntimeAvailableNodeNumber
+        unit: Count
+        description: Integration runtime available node count
+
+      - provider_name: MaxAllowedResourceCount
+        unit: Count
+        description: Maximum allowed entities count
+
+      - provider_name: MaxAllowedFactorySizeInGbUnits
+        unit: Count
+        description: Maximum allowed factory size (GB unit)
+
+      - provider_name: ResourceCount
+        unit: Count
+        description: Total entities count
+
+      - provider_name: FactorySizeInGbUnits
+        unit: Count
+        description: Total factory size (GB unit)

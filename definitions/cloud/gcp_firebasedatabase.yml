@@ -1,0 +1,90 @@
+provider: gcp
+service: firebasedatabase
+display_name: Firebase Database
+properties:
+  resource_uri: firebasedatabase.googleapis.com
+entities:
+  - name: Namespace
+    properties:
+      labels:
+      - project_id
+      - table_name
+      - location
+    metrics:
+    - provider_name: io/database_load
+      unit: Count
+      properties:
+        labels:
+        - type
+      description: Fraction of database load, grouped by type.
+
+    - provider_name: io/persisted_bytes_count
+      unit: Bytes
+      description: Bytes of data persisted to disk.
+
+    - provider_name: io/sent_responses_count
+      unit: Count
+      description: Number of responses sent or broadcasted to clients.
+
+    - provider_name: io/utilization
+      unit: Count
+      description: Fraction of I/O used.
+
+    - provider_name: network/active_connections
+      unit: Count
+      description: The number of outstanding connections
+
+    - provider_name: network/api_hits_count
+      unit: Count
+      properties:
+        labels:
+        - operation_type
+      description: The number of hits aginst your database grouped by type.
+
+    - provider_name: network/broadcast_load
+      unit: Count
+      description: Utilization of the time it takes to prep and send broadcasts to clients.
+
+    - provider_name: network/https_requests_count
+      unit: Count
+      properties:
+        labels:
+        - reused_ssl_session
+      description: Number of HTTPS requests received.
+
+    - provider_name: network/monthly_sent
+      unit: Bytes
+      description: The total outgoing bytes sent aggregated and reset monthly.
+
+    - provider_name: network/monthly_sent_limit
+      unit: Bytes
+      description: The monthly network limit for the Firebase database.
+
+    - provider_name: network/sent_bytes_count
+      unit: Bytes
+      description: The outgoing bandwidth used by the database, including encryption and protocol overhead.
+
+    - provider_name: network/sent_payload_and_protocol_bytes_count
+      unit: Bytes
+      description: The outgoing bandwidth usage without encryption overhead.
+
+    - provider_name: network/sent_payload_bytes_count
+      unit: Bytes
+      description: The outgoing bandwidth usage without encryption nor protocol.
+
+    - provider_name: rules/evaluation_count
+      unit: Count
+      properties:
+        labels:
+        - request_method
+        - ruleset_label
+        - result
+      description: The number of Firebase Realtime Database Security Rule evaluations performed in response to write and read requests.
+
+    - provider_name: storage/limit
+      unit: Bytes
+      description: The storage limit for the Firebase database.
+
+    - provider_name: storage/total_bytes
+      unit: Bytes
+      description: The size of the Firebase database storage.

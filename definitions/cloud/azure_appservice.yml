@@ -1,0 +1,113 @@
+provider: azure
+service: appservice
+display_name: App Service
+slug: azure_appservice
+entities:
+  - name: WebAppEntity
+    event_type: AzureAppServiceWebAppSample
+    source: azure/appservice
+    properties:
+      resource_type: TDB
+      aggregate_dimensions: false
+
+    metrics:
+        - provider_name: CpuTime
+          unit: Seconds
+
+        - provider_name: Requests
+          unit: Count
+
+        - provider_name: BytesReceived
+          nrdb_name: received
+          unit: Bytes
+
+        - provider_name: BytesSent
+          nrdb_name: sent
+          unit: Bytes
+
+        - provider_name: Http101
+          unit: Count
+
+        - provider_name: Http2xx
+          unit: Count
+
+        - provider_name: Http3xx
+          unit: Count
+
+        - provider_name: Http4xx
+          unit: Count
+        
+        - provider_name: Http5xx
+          unit: Count
+
+        - provider_name: Http401
+          unit: Count
+
+        - provider_name: Http403
+          unit: Count
+
+        - provider_name: Http404
+          unit: Count
+
+        - provider_name: Http406
+          unit: Count
+
+        - provider_name: MemoryWorkingSet
+          unit: Bytes
+
+        - provider_name: AverageMemoryWorkingSet
+          unit: Bytes
+
+        - provider_name: AverageResponseTime
+          unit: Seconds
+
+        - provider_name: AppConnections
+          unit: Count
+
+        - provider_name: Handles
+          unit: Count
+
+        - provider_name: Threads
+          unit: Count
+
+        - provider_name: Private
+          unit: Bytes
+
+        - provider_name: IoRead
+          unit: BytesPerSecond
+
+        - provider_name: IoWrite
+          unit: BytesPerSecond
+
+        - provider_name: IoOther
+          unit: BytesPerSecond
+
+        - provider_name: IoReadOperations
+          unit: CountPerSecond
+
+        - provider_name: IoWriteOperations
+          unit: CountPerSecond
+
+        - provider_name: IoOtherOperations
+          unit: CountPerSecond
+
+        - provider_name: RequestsInApplicationQueue
+          unit: Count
+
+        - provider_name: CurrentAssemblies
+          unit: Count
+
+        - provider_name: TotalAppDomains
+          unit: Count
+
+        - provider_name: TotalAppDomainsUnloaded
+          unit: Count
+
+        - provider_name: Gen0Collections
+          unit: Count
+
+        - provider_name: Gen1Collections
+          unit: Count
+
+        - provider_name: Gen2Collections
+          unit: Count

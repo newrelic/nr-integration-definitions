@@ -1,0 +1,164 @@
+provider: aws
+service: glue
+display_name: Glue
+entities:
+  - name: Job
+    properties:
+      arn_id: job/{JobName}
+      namespace: Glue
+      dimensions: [ JobName ]
+    metrics:
+      - provider_name: glue.driver.aggregate.bytesRead
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes read from all data sources by all completed Spark tasks running in all executors.
+
+      - provider_name: glue.driver.aggregate.elapsedTime
+        unit: Milliseconds
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The ETL elapsed time in milliseconds (does not include the job bootstrap times).
+
+      - provider_name: glue.driver.aggregate.numCompletedStages
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of completed stages in the job.
+
+      - provider_name: glue.driver.aggregate.numCompletedTasks
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of completed tasks in the job.
+
+      - provider_name: glue.driver.aggregate.numFailedTasks
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of failed tasks.
+
+      - provider_name: glue.driver.aggregate.numKilledTasks
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of tasks killed.
+
+      - provider_name: glue.driver.aggregate.recordsRead
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of records read from all data sources by all completed Spark tasks running in all executors.
+
+      - provider_name: glue.driver.aggregate.shuffleBytesWritten
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes written by all executors to shuffle data between them since the previous report (aggregated by the AWS Glue Metrics Dashboard as the number of bytes written for this purpose during the previous minute).
+
+      - provider_name: glue.driver.aggregate.shuffleLocalBytesRead
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes read by all executors to shuffle data between them since the previous report (aggregated by the AWS Glue Metrics Dashboard as the number of bytes read for this purpose during the previous minute).
+
+      - provider_name: glue.driver.BlockManager.disk.diskSpaceUsed_MB
+        type: Gauge
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of megabytes of disk space used across all executors.
+
+      - provider_name: glue.driver.ExecutorAllocationManager.executors.numberAllExecutors
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Average ]
+        description: The number of actively running job executors.
+
+      - provider_name: glue.driver.ExecutorAllocationManager.executors.numberMaxNeededExecutors
+        unit: Count
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Maximum ]
+        description: The number of maximum (actively running and pending) job executors needed to satisfy the current load.
+
+      - provider_name: glue.driver.jvm.heap.usage
+        unit: Percent
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Maximum ]
+        description: "The fraction of memory used by the JVM heap for this driver (scale: 0-1) for driver."
+
+      - provider_name: glue.ALL.jvm.heap.usage
+        unit: Percent
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Maximum ]
+        description: "The fraction of memory used by the JVM heap for this driver (scale: 0-1) for ALL executors."
+
+      - provider_name: glue.driver.jvm.heap.used
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Average ]
+        description: The number of memory bytes used by the JVM heap for the driver.
+
+      - provider_name: glue.ALL.jvm.heap.used
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Average ]
+        description: The number of memory bytes used by the JVM heap for ALL executors.
+
+      - provider_name: glue.driver.s3.filesystem.read_bytes
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes read from Amazon S3 by the driver since the previous report (aggregated by the AWS Glue Metrics Dashboard as the number of bytes read during the previous minute).
+
+      - provider_name: glue.ALL.s3.filesystem.read_bytes
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes read from Amazon S3 by ALL executors since the previous report (aggregated by the AWS Glue Metrics Dashboard as the number of bytes read during the previous minute).
+
+      - provider_name: glue.driver.s3.filesystem.write_bytes
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes written to Amazon S3 by the driver since the previous report (aggregated by the AWS Glue Metrics Dashboard as the number of bytes written during the previous minute).
+
+      - provider_name: glue.ALL.s3.filesystem.write_bytes
+        unit: Bytes
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Sum ]
+        description: The number of bytes written to Amazon S3 by ALL executors since the previous report (aggregated by the AWS Glue Metrics Dashboard as the number of bytes written during the previous minute).
+
+      - provider_name: glue.driver.system.cpuSystemLoad
+        unit: Percent
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Average ]
+        description: "The fraction of CPU system load used (scale: 0-1) by the driver."
+
+      - provider_name: glue.ALL.system.cpuSystemLoad
+        unit: Percent
+        properties:
+          dimensions: [ JobRunId, Type ]
+          statistics: [ Average ]
+        description: "The fraction of CPU system load used (scale: 0-1) by the ALL executors."

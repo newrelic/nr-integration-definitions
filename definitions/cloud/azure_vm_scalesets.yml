@@ -1,0 +1,153 @@
+provider: azure
+service: VirtualMachine
+display_name: Virtual machine scale sets
+entities:
+  - name: ScaleSet
+    properties:
+      resource_type: Microsoft.Compute/virtualMachineScaleSets
+
+    metrics:
+      - provider_name: Percentage CPU
+        nrdb_name: cpu
+        unit: Percent
+        description: The percentage of allocated compute units that are currently in use by the Virtual Machine(s)
+
+      - provider_name: Network In
+        nrdb_name: networkIn
+        unit: Bytes
+        description: The number of billable bytes received on all network interfaces by the Virtual Machine(s) (Incoming Traffic)
+
+      - provider_name: Network Out
+        nrdb_name: networkOut
+        unit: Bytes
+        description: The number of billable bytes out on all network interfaces by the Virtual Machine(s) (Outgoing Traffic)
+
+      - provider_name: Disk Read Bytes
+        nrdb_name: diskRead
+        unit: Bytes
+        description: Bytes read from disk during monitoring period
+
+      - provider_name: Disk Write Bytes
+        nrdb_name: diskWrite
+        unit: Bytes
+        description: Bytes written to disk during monitoring period
+
+      - provider_name: Disk Read Operations/Sec
+        nrdb_name: diskReadOperations
+        unit: CountPerSecond
+        description: Disk Read IOPS
+
+      - provider_name: Disk Write Operations/Sec
+        nrdb_name: diskWriteOperations
+        unit: CountPerSecond
+        description: Disk Write IOPS
+
+      - provider_name: CPU Credits Remaining
+        nrdb_name: cpuCreditsRemaining
+        unit: Count
+        description: Total number of credits available to burst
+
+      - provider_name: CPU Credits Consumed
+        nrdb_name: cpuCreditsConsumed
+        unit: Count
+        description: Total number of credits consumed by the Virtual Machine
+
+      - provider_name: Data Disk Read Bytes/sec
+        nrdb_name: dataDiskReadBytes
+        unit: CountPerSecond
+        description: Bytes/Sec read from a single disk during monitoring period
+
+      - provider_name: Data Disk Write Bytes/sec
+        nrdb_name: dataDiskWriteBytes
+        unit: CountPerSecond
+        description: Bytes/Sec written to a single disk during monitoring period
+
+      - provider_name: Data Disk Read Operations/Sec
+        nrdb_name: dataDiskReadOperations
+        unit: CountPerSecond
+        description: Read IOPS from a single disk during monitoring period
+
+      - provider_name: Data Disk Write Operations/Sec
+        nrdb_name: dataDiskWriteOperations
+        unit: CountPerSecond
+        description: Write IOPS from a single disk during monitoring period
+
+      - provider_name: Data Disk Queue Depth
+        nrdb_name: dataDiskQueueDepth
+        unit: Count
+        description: Data Disk Queue Depth(or Queue Length)
+
+      - provider_name: OS Disk Read Bytes/sec
+        nrdb_name: osDiskReadBytes
+        unit: CountPerSecond
+        description: Bytes/Sec read from a single disk during monitoring period for OS disk
+
+      - provider_name: OS Disk Write Bytes/sec
+        nrdb_name: osDiskWriteBytes
+        unit: CountPerSecond
+        description: Bytes/Sec written to a single disk during monitoring period for OS disk
+
+      - provider_name: OS Disk Read Operations/Sec
+        nrdb_name: osDiskReadOperations
+        unit: CountPerSecond
+        description: Read IOPS from a single disk during monitoring period for OS disk
+
+      - provider_name: OS Disk Write Operations/Sec
+        nrdb_name: osDiskWriteOperations
+        unit: CountPerSecond
+        description: Write IOPS from a single disk during monitoring period for OS disk
+
+      - provider_name: OS Disk Queue Depth
+        nrdb_name: osDiskQueueDepth
+        unit: Count
+        description: OS Disk Queue Depth(or Queue Length)
+
+      - provider_name: Inbound Flows
+        nrdb_name: inboundFlows
+        unit: Count
+        description: Inbound Flows are number of current flows in the inbound direction (traffic going into the VM)
+
+      - provider_name: Outbound Flows
+        nrdb_name: outboundFlows
+        unit: Count
+        description: Outbound Flows are number of current flows in the outbound direction (traffic going out of the VM)
+
+      - provider_name: Inbound Flows Maximum Creation Rate
+        nrdb_name: inboundFlowsMaximumCreationRate
+        unit: CountPerSecond
+        description: The maximum creation rate of inbound flows (traffic going into the VM)
+
+      - provider_name: Outbound Flows Maximum Creation Rate
+        nrdb_name: outboundFlowsMaximumCreationRate
+        unit: CountPerSecond
+        description: The maximum creation rate of outbound flows (traffic going out of the VM)
+
+      - provider_name: Premium Data Disk Cache Read Hit
+        nrdb_name: premiumDataDiskCacheReadHit
+        unit: Percent
+        description: Premium Data Disk Cache Read Hit
+
+      - provider_name: Premium Data Disk Cache Read Miss
+        nrdb_name: premiumDataDiskCacheReadMiss
+        unit: Percent
+        description: Premium Data Disk Cache Read Miss
+
+      - provider_name: Premium OS Disk Cache Read Hit
+        nrdb_name: premiumOSDiskCacheReadHit
+        unit: Percent
+        description: Premium OS Disk Cache Read Hit
+
+      - provider_name: Premium OS Disk Cache Read Miss
+        nrdb_name: premiumOSDiskCacheReadMiss
+        unit: Percent
+        description: Premium OS Disk Cache Read Miss
+
+      - provider_name: Network In Total
+        nrdb_name: networkInTotal
+        unit: Bytes
+        description: The number of bytes received on all network interfaces by the Virtual Machine(s) (Incoming Traffic)
+
+      - provider_name: Network Out Total
+        nrdb_name: networkOutTotal
+        unit: Bytes
+        description: The number of bytes out on all network interfaces by the Virtual Machine(s) (Outgoing Traffic)

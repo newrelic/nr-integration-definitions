@@ -1,0 +1,37 @@
+provider: gcp
+service: datastore
+display_name: Datastore
+properties:
+  resource_uri: datastore.googleapis.com
+entities:
+  - name: Request
+    properties:
+      labels:
+        - project_id
+        - module_id
+        - version_id
+    metrics:
+      - provider_name: api/request_count
+        nrdb_name: api.Requests
+        unit: Count
+        properties:
+          labels:
+            - api_method
+            - response_code
+        description: Count of Datastore API calls.
+      - provider_name: entity/read_sizes
+        unit: Bytes
+        properties:
+          labels:
+            - type
+        description: Distribution of sizes of read entities, grouped by type.
+      - provider_name: entity/write_sizes
+        unit: Bytes
+        properties:
+          labels:
+            - op
+        description: Distribution of sizes of written entities, grouped by op.
+      - provider_name: index/write_count
+        nrdb_name: index.Writes
+        unit: Count
+        description: "Count of Datastore index writes."

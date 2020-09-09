@@ -1,0 +1,381 @@
+provider: aws
+service: kinesisAnalytics
+display_name: Kinesis Data Analytics
+entities:
+  - name: Application
+    properties:
+      namespace: AWS/KinesisAnalytics
+      dimensions: [ Application ]
+    metrics:
+      - provider_name: bytes_consumed_rate
+        unit: BytesPerSecond
+        nrdb_name: bytesConsumedRate
+        description: "The average number of bytes consumed per second for a topic"
+
+      - provider_name: commitsFailed
+        unit: Count
+        description: "The total number of offset commit failures to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: commitsSucceeded
+        unit: Count
+        description: "The total number of successful offset commits to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: cpuUtilization
+        unit: Percent
+        description: "Overall percentage of CPU utilization across task managers. For example, if there are five task managers, Kinesis Data Analytics publishes five samples of this metric per reporting interval."
+
+      - provider_name: currentInputWatermark
+        unit: Milliseconds
+        description: "The last watermark this application/operator/task/thread has received"
+
+      - provider_name: currentOutputWatermark
+        unit: Milliseconds
+        description: "The last watermark this application/operator/task/thread has emitted"
+
+      - provider_name: downtime
+        unit: Milliseconds
+        description: "For jobs currently in a failing/recovering situation, the time elapsed during this outage."
+
+      - provider_name: fullRestarts
+        unit: Count
+        description: "The total number of times this job has fully restarted since it was submitted. This metric does not measure fine-grained restarts."
+
+      - provider_name: heapMemoryUtilization
+        unit: Percent
+        description: "Overall heap memory utilization across task managers. For example, if there are five task managers, Kinesis Data Analytics publishes five samples of this metric per reporting interval."
+
+      - provider_name: lastCheckpointDuration
+        unit: Milliseconds
+        description: "The time it took to complete the last checkpoint"
+
+      - provider_name: lastCheckpointSize
+        unit: Bytes
+        description: "The total size of the last checkpoint"
+
+      - provider_name: numRecordsInPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this operator or task has received per second."
+
+      - provider_name: numRecordsOut
+        unit: Count
+        description: "The total number of records this operator or task has emitted."
+
+      - provider_name: numRecordsOutPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this operator or task has emitted per second."
+
+      - provider_name: numberOfFailedCheckpoints
+        unit: Count
+        description: "The number of times checkpointing has failed."
+
+      - provider_name: numRecordsIn
+        unit: Count
+        description: "The total number of records this operator or task has received."
+
+      - provider_name: oldGenerationGCCount
+        unit: Count
+        nrdb_name: oldGenerationGcCount
+        description: "The total number of old garbage collection operations that have occurred across all task managers."
+
+      - provider_name: oldGenerationGCTime
+        unit: Milliseconds
+        nrdb_name: oldGenerationGcTime
+        description: "The total time spent performing old garbage collection operations."
+
+      - provider_name: records_lag_max
+        unit: Count
+        nrdb_name: recordsLagMax
+        description: "The maximum lag in terms of number of records for any partition in this window"
+
+      - provider_name: threadsCount
+        unit: Count
+        description: "The total number of live threads used by the application."
+
+      - provider_name: uptime
+        unit: Milliseconds
+        description: "The time that the job has been running without interruption."
+      - provider_name: Bytes
+        unit: Bytes
+        description: "The number of bytes read (per input stream) or written (per output stream)."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: "InputProcessing.DroppedRecords"
+        unit: Count
+        description: "The number of records returned by a Lambda function that were marked with Dropped status."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: InputProcessing.Duration
+        unit: Milliseconds
+        description: "The time taken for each AWS Lambda function invocation performed by Kinesis Data Analytics."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: InputProcessing.OkBytes
+        unit: Count
+        description: "The sum of bytes of the records returned by a Lambda function that were marked with Ok status."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: InputProcessing.OkRecords
+        unit: Count
+        description: "The number of records returned by a Lambda function that were marked with Ok status."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: InputProcessing.ProcessingFailedRecords
+        unit: Count
+        description: "The number of records returned by a Lambda function that were marked with ProcessingFailed status."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: InputProcessing.Success
+        unit: Count
+        description: "The number of successful Lambda invocations by Kinesis Data Analytics."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: LambdaDelivery.DeliveryFailedRecords
+        unit: Count
+        description: "The number of records returned by a Lambda function that were marked with DeliveryFailed status."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: LambdaDelivery.Duration
+        unit: Milliseconds
+        description: "The time taken for each Lambda function invocation performed by Kinesis Data Analytics."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: LambdaDelivery.OkRecords
+        unit: Count
+        description: "The number of records returned by a Lambda function that were marked with Ok status."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: MillisBehindLatest
+        unit: Milliseconds
+        description: "Indicates how far behind from the current time an application is reading from the streaming source."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: Records
+        unit: Count
+        description: "The number of records read (per input stream) or written (per output stream)."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: Success
+        unit: Count
+        description: "1 for each successful delivery attempt to the destination configured for your application; 0 for every failed delivery attempt. The average value of this metric indicates how many successful deliveries are performed."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: bytesRequestedPerFetch
+        unit: Bytes
+        description: "The bytes requested in a single call to getRecords."
+        properties:
+          dimensions: [Flow, Id]
+
+      - provider_name: committedOffsets
+        unit: Other
+        description: "The last successfully committed offsets to Kafka, for each partition. A particular partition's metric can be specified by topic name and partition id."
+        properties:
+          dimensions: [Flow, Topic]
+
+      - provider_name: currentOffsets
+        unit: Other
+        description: "The consumer's current read offset, for each partition. A particular partition's metric can be specified by topic name and partition id."
+        properties:
+          dimensions: [Flow, Topic]
+
+  - name: ApplicationKpu
+    # This metrics is emitted once per hour with > 1 hour of delay. It should be part of the Application entity,
+    # but since we haven't a "delay per metric" option, we have to split it up in 2 entities.
+    # Also we're overriding event_type, source & provider in order of emit those metrics to the same sample than
+    # the Application entity.
+    delay: 7200
+    event_type: AwsKinesisAnalyticsApplicationSample
+    source: "aws/kinesisanalytics/application"
+    provider: AwsKinesisAnalyticsApplication
+    properties:
+      namespace: AWS/KinesisAnalytics
+      dimensions: [ Application ]
+    metrics:
+      - provider_name: KPUs
+        nrdb_name: KPUs
+        unit: Count
+        description: "The number of Kinesis Processing Units (KPUs) currently in use."
+
+  - name: Task
+    properties:
+      namespace: AWS/KinesisAnalytics
+      dimensions: [ Application, Task ]
+    metrics:
+      - provider_name: commitsFailed
+        unit: Count
+        description: "The total number of offset commit failures to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: commitsSucceeded
+        unit: Count
+        description: "The total number of successful offset commits to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: currentInputWatermark
+        unit: Milliseconds
+        description: "The last watermark this task has received"
+
+      - provider_name: currentOutputWatermark
+        unit: Milliseconds
+
+      - provider_name: numLateRecordsDropped
+        unit: Count
+        description: "The number of records this task has dropped due to arriving late."
+
+      - provider_name: numRecordsIn
+        unit: Count
+        description: "The total number of records this task has received."
+
+      - provider_name: numRecordsInPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this task has received per second."
+
+      - provider_name: numRecordsOut
+        unit: Count
+        description: "The total number of records this task has emitted."
+
+      - provider_name: numRecordsOutPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this task has emitted per second."
+
+      - provider_name: records_lag_max
+        unit: Count
+        nrdb_name: recordsLagMax
+        description: "The maximum lag in terms of number of records for any partition in this window"
+
+  - name: TaskOperator
+    properties:
+      namespace: AWS/KinesisAnalytics
+      dimensions: [ Application, Task, TaskOperator ]
+    metrics:
+      - provider_name: bytes_consumed_rate
+        unit: BytesPerSecond
+        nrdb_name: bytesConsumedRate
+        description: "The average number of bytes consumed per second for a topic"
+
+      - provider_name: commitsFailed
+        unit: Count
+        description: "The total number of offset commit failures to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: commitsSucceeded
+        unit: Count
+        description: "The total number of successful offset commits to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: currentInputWatermark
+        unit: Milliseconds
+        description: "The last watermark this task has received"
+
+      - provider_name: currentOutputWatermark
+        unit: Milliseconds
+        description: "The last watermark this application/operator/task/thread has emitted"
+
+      - provider_name: numLateRecordsDropped
+        unit: Count
+        description: "The number of records this operator or task has dropped due to arriving late."
+
+      - provider_name: numRecordsIn
+        unit: Count
+        description: "The total number of records this task has received."
+
+      - provider_name: numRecordsInPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this task has received per second."
+
+      - provider_name: numRecordsOut
+        unit: Count
+        description: "The total number of records this task has emitted."
+
+      - provider_name: numRecordsOutPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this task has emitted per second."
+
+      - provider_name: records_lag_max
+        unit: Count
+        nrdb_name: recordsLagMax
+        description: "The maximum lag in terms of number of records for any partition in this window"
+
+  - name: TaskParallelism
+    properties:
+      namespace: AWS/KinesisAnalytics
+      dimensions: [Application, Task, TaskParallelismIndex]
+    metrics:
+      - provider_name: currentInputWatermark
+        unit: Milliseconds
+        description: "The last watermark this application/operator/task/thread has received"
+
+      - provider_name: numLateRecordsDropped
+        unit: Count
+        description: "The number of records this task has dropped due to arriving late."
+
+      - provider_name: numRecordsIn
+        unit: Count
+        description: "The total number of records this task has received."
+
+      - provider_name: numRecordsInPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this task has received per second."
+
+      - provider_name: numRecordsOut
+        unit: Count
+        description: "The total number of records this task has emitted."
+
+      - provider_name: numRecordsOutPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this task has emitted per second."
+
+  - name: TaskOperatorParallelism
+    properties:
+      namespace: AWS/KinesisAnalytics
+      dimensions: [Application, Task, TaskOperator, TaskOperatorParallelismIndex]
+    metrics:
+      - provider_name: bytes_consumed_rate
+        unit: BytesPerSecond
+        nrdb_name: bytesConsumedRate
+        description: "The average number of bytes consumed per second for a topic"
+
+      - provider_name: commitsFailed
+        unit: Count
+        description: "The total number of offset commit failures to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: commitsSucceeded
+        unit: Count
+        description: "The total number of successful offset commits to Kafka, if offset committing and checkpointing are enabled."
+
+      - provider_name: currentInputWatermark
+        unit: Milliseconds
+        description: "The last watermark this application/operator/task/thread has received"
+
+      - provider_name: currentOutputWatermark
+        unit: Milliseconds
+        description: "The last watermark this application/operator/task/thread has emitted"
+
+      - provider_name: numRecordsIn
+        unit: Count
+        description: "The total number of records this operator or task has received."
+
+      - provider_name: numRecordsInPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this operator or task has received per second."
+
+      - provider_name: numRecordsOut
+        unit: Count
+        description: "The total number of records this operator or task has emitted."
+
+      - provider_name: numRecordsOutPerSecond
+        unit: CountPerSecond
+        description: "The total number of records this operator or task has emitted per second."
+
+      - provider_name: records_lag_max
+        unit: Count
+        nrdb_name: recordsLagMax
+        description: "The maximum lag in terms of number of records for any partition in this window"

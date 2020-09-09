@@ -1,0 +1,144 @@
+provider: gcp
+service: router
+display_name: Router
+properties:
+  resource_uri: router.googleapis.com
+entities:
+- name: CloudRouter
+  properties:
+    labels:
+    - project_id
+    - router_id
+    - region
+  metrics:
+  - provider_name: best_received_routes_count
+    unit: Count
+    description: Current number of best routes received by router.
+  - provider_name: bfd/control/receive_intervals
+    unit: Milliseconds
+    properties:
+      labels:
+      - peer_ip
+    description: BFD control packets receive intervals.
+  - provider_name: bfd/control/received_packets_count
+    unit: Count
+    properties:
+      labels:
+      - peer_ip
+    description: Number of control packets received from this BFD session.
+  - provider_name: bfd/control/rejected_packets_count
+    unit: Count
+    properties:
+      labels:
+      - peer_ip
+    description: Number of control packets rejected, from this BFD session.
+  - provider_name: bfd/control/transmit_intervals
+    unit: Milliseconds
+    properties:
+      labels:
+      - peer_ip
+    description: BFD control packets transmit intervals.
+  - provider_name: bfd/control/transmitted_packets_count
+    unit: Count
+    properties:
+      labels:
+      - peer_ip
+    description: Number of control packets transmitted from this BFD session.
+  - provider_name: bfd/session_up
+    unit: Count
+    properties:
+      labels:
+      - peer_ip
+    description: Indicator for successful BFD session establishment.
+  - provider_name: bgp/received_routes_count
+    unit: Count
+    properties:
+      labels:
+      - bgp_peer_name
+    description: Current number of routes received on a bgp session.
+  - provider_name: bgp/sent_routes_count
+    unit: Count
+    properties:
+      labels:
+      - bgp_peer_name
+    description: Current number of routes sent on a bgp session.
+  - provider_name: bgp/session_up
+    unit: Count
+    properties:
+      labels:
+      - bgp_peer_name
+    description: Indicator for successful bgp session establishment.
+  - provider_name: bgp_sessions_down_count
+    unit: Count
+    description: Number of BGP sessions on the router that are down.
+  - provider_name: bgp_sessions_up_count
+    unit: Count
+    description: Number of BGP sessions on the router that are up.
+  - provider_name: router_up
+    unit: Count
+    description: Router status, up or down.
+  - provider_name: sent_routes_count
+    unit: Count
+    description: Current number of routes sent by router.
+- name: NatGateway
+  properties:
+    labels:
+    - project_id
+    - region
+    - router_id
+    - gateway_name
+  metrics:
+  - provider_name: nat/allocated_ports
+    unit: Count
+    properties:
+      labels:
+      - nat_ip
+    description: Number of ports allocated to all VMs by the NAT gateway.
+  - provider_name: nat/closed_connections_count
+    unit: Count
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of connections closed over the NAT gateway.
+  - provider_name: nat/dropped_received_packets_count
+    unit: Count
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of received packets dropped by the NAT gateway.
+  - provider_name: nat/new_connections_count
+    unit: Count
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of new connections created over the NAT gateway.
+  - provider_name: nat/port_usage
+    unit: Count
+    properties:
+      labels:
+      - ip_protocol
+    description: Maximum number of connections from VM to a single internet endpoint (IP:port).
+  - provider_name: nat/received_bytes_count
+    unit: Bytes
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of bytes received (Internet -> VMs) via the NAT gateway.
+  - provider_name: nat/received_packets_count
+    unit: Count
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of packets received (Internet -> VMs) via the NAT gateway.
+  - provider_name: nat/sent_bytes_count
+    unit: Bytes
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of bytes sent (VMs -> Internet) over the NAT gateway.
+  - provider_name: nat/sent_packets_count
+    unit: Count
+    properties:
+      labels:
+      - ip_protocol
+    description: Count of packets sent (VMs -> Internet) over the NAT gateway.

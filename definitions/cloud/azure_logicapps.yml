@@ -1,0 +1,212 @@
+provider: azure
+service: logicApps
+display_name: Logic Apps
+entities:
+- name: Workflow
+  properties:
+    resource_type: Microsoft.Logic/workflows
+  metrics:
+  - provider_name: RunsStarted
+    unit: Count
+    description: Number of workflow runs started.
+  - provider_name: RunsCompleted
+    unit: Count
+    description: Number of workflow runs completed.
+  - provider_name: RunsSucceeded
+    unit: Count
+    description: Number of workflow runs succeeded.
+  - provider_name: RunsFailed
+    unit: Count
+    description: Number of workflow runs failed.
+  - provider_name: RunsCancelled
+    unit: Count
+    description: Number of workflow runs cancelled.
+  - provider_name: RunLatency
+    unit: Seconds
+    description: Latency of completed workflow runs.
+  - provider_name: RunSuccessLatency
+    unit: Seconds
+    description: Latency of succeeded workflow runs.
+  - provider_name: RunThrottledEvents
+    unit: Count
+    description: Number of workflow action or trigger throttled events.
+  - provider_name: RunStartThrottledEvents
+    unit: Count
+    description: Number of workflow run start throttled events.
+  - provider_name: RunFailurePercentage
+    nrdb_name: runFailure
+    unit: Percent
+    description: Percentage of workflow runs failed.
+  - provider_name: ActionsStarted
+    unit: Count
+    description: Number of workflow actions started.
+  - provider_name: ActionsCompleted
+    unit: Count
+    description: Number of workflow actions completed.
+  - provider_name: ActionsSucceeded
+    unit: Count
+    description: Number of workflow actions succeeded.
+  - provider_name: ActionsFailed
+    unit: Count
+    description: Number of workflow actions failed.
+  - provider_name: ActionsSkipped
+    unit: Count
+    description: Number of workflow actions skipped.
+  - provider_name: ActionLatency
+    unit: Seconds
+    description: Latency of completed workflow actions.
+  - provider_name: ActionSuccessLatency
+    unit: Seconds
+    description: Latency of succeeded workflow actions.
+  - provider_name: ActionThrottledEvents
+    unit: Count
+    description: Number of workflow action throttled events..
+  - provider_name: TriggersStarted
+    unit: Count
+    description: Number of workflow triggers started.
+  - provider_name: TriggersCompleted
+    unit: Count
+    description: Number of workflow triggers completed.
+  - provider_name: TriggersSucceeded
+    unit: Count
+    description: Number of workflow triggers succeeded.
+  - provider_name: TriggersFailed
+    unit: Count
+    description: Number of workflow triggers failed.
+  - provider_name: TriggersSkipped
+    unit: Count
+    description: Number of workflow triggers skipped.
+  - provider_name: TriggersFired
+    unit: Count
+    description: Number of workflow triggers fired.
+  - provider_name: TriggerLatency
+    unit: Seconds
+    description: Latency of completed workflow triggers.
+  - provider_name: TriggerFireLatency
+    unit: Seconds
+    description: Latency of fired workflow triggers.
+  - provider_name: TriggerSuccessLatency
+    unit: Seconds
+    description: Latency of succeeded workflow triggers.
+  - provider_name: TriggerThrottledEvents
+    unit: Count
+    description: Number of workflow trigger throttled events.
+  - provider_name: BillableActionExecutions
+    unit: Count
+    description: Number of workflow action executions getting billed.
+  - provider_name: BillableTriggerExecutions
+    unit: Count
+    description: Number of workflow trigger executions getting billed.
+  - provider_name: TotalBillableExecutions
+    unit: Count
+    description: Number of workflow executions getting billed.
+  - provider_name: BillingUsageNativeOperation
+    unit: Count
+    description: Number of native operation executions getting billed.
+  - provider_name: BillingUsageStandardConnector
+    unit: Count
+    description: Number of standard connector executions getting billed.
+  - provider_name: BillingUsageStorageConsumption
+    unit: Count
+    description: Number of storage consumption executions getting billed.
+- name: IntegrationServiceEnvironment
+  properties:
+    resource_type: Microsoft.Logic/integrationServiceEnvironments
+  metrics:
+  - provider_name: RunsStarted
+    unit: Count
+    description: Number of workflow runs started.
+  - provider_name: RunsCompleted
+    unit: Count
+    description: Number of workflow runs completed.
+  - provider_name: RunsSucceeded
+    unit: Count
+    description: Number of workflow runs succeeded.
+  - provider_name: RunsFailed
+    unit: Count
+    description: Number of workflow runs failed.
+  - provider_name: RunsCancelled
+    unit: Count
+    description: Number of workflow runs cancelled.
+  - provider_name: RunLatency
+    unit: Seconds
+    description: Latency of completed workflow runs.
+  - provider_name: RunSuccessLatency
+    unit: Seconds
+    description: Latency of succeeded workflow runs.
+  - provider_name: RunThrottledEvents
+    unit: Count
+    description: Number of workflow action or trigger throttled events.
+  - provider_name: RunStartThrottledEvents
+    unit: Count
+    description: Number of workflow run start throttled events.
+  - provider_name: RunFailurePercentage
+    nrdb_name: runFailure
+    unit: Percent
+    description: Percentage of workflow runs failed.
+  - provider_name: ActionsStarted
+    unit: Count
+    description: Number of workflow actions started.
+  - provider_name: ActionsCompleted
+    unit: Count
+    description: Number of workflow actions completed.
+  - provider_name: ActionsSucceeded
+    unit: Count
+    description: Number of workflow actions succeeded.
+  - provider_name: ActionsFailed
+    unit: Count
+    description: Number of workflow actions failed.
+  - provider_name: ActionsSkipped
+    unit: Count
+    description: Number of workflow actions skipped.
+  - provider_name: ActionLatency
+    unit: Seconds
+    description: Latency of completed workflow actions.
+  - provider_name: ActionSuccessLatency
+    unit: Seconds
+    description: Latency of succeeded workflow actions.
+  - provider_name: ActionThrottledEvents
+    unit: Count
+    description: Number of workflow action throttled events..
+  - provider_name: TriggersStarted
+    unit: Count
+    description: Number of workflow triggers started.
+  - provider_name: TriggersCompleted
+    unit: Count
+    description: Number of workflow triggers completed.
+  - provider_name: TriggersSucceeded
+    unit: Count
+    description: Number of workflow triggers succeeded.
+  - provider_name: TriggersFailed
+    unit: Count
+    description: Number of workflow triggers failed.
+  - provider_name: TriggersSkipped
+    unit: Count
+    description: Number of workflow triggers skipped.
+  - provider_name: TriggersFired
+    unit: Count
+    description: Number of workflow triggers fired.
+  - provider_name: TriggerLatency
+    unit: Seconds
+    description: Latency of completed workflow triggers.
+  - provider_name: TriggerFireLatency
+    unit: Seconds
+    description: Latency of fired workflow triggers.
+  - provider_name: TriggerSuccessLatency
+    unit: Seconds
+    description: Latency of succeeded workflow triggers.
+  - provider_name: TriggerThrottledEvents
+    unit: Count
+    description: Number of workflow trigger throttled events.
+  - provider_name: IntegrationServiceEnvironmentWorkflowProcessorUsage
+    unit: Percent
+    description: Workflow processor usage for integration service environment.
+  - provider_name: IntegrationServiceEnvironmentWorkflowMemoryUsage
+    unit: Percent
+    description: Workflow memory usage for integration service environment.
+  - provider_name: IntegrationServiceEnvironmentConnectorProcessorUsage
+    unit: Percent
+    description: Connector processor usage for integration service environment.
+  - provider_name: IntegrationServiceEnvironmentConnectorMemoryUsage
+    unit: Percent
+    description: Connector memory usage for integration service environment.

@@ -1,0 +1,54 @@
+provider: azure
+service: apiManagement
+display_name: API Management
+entities:
+  - name: Service
+    properties:
+      resource_type: Microsoft.ApiManagement/service
+
+    metrics:
+      - provider_name: TotalRequests
+        unit: Count
+        description: The total number of gateway requests in a given period.
+      - provider_name: SuccessfulRequests
+        unit: Count
+        description: The total number of successful gateway requests in a given period.
+      - provider_name: UnauthorizedRequests
+        unit: Count
+        description: The total number of unauthorized gateway requests in a given period.
+      - provider_name: FailedRequests
+        unit: Count
+        description: The total number of failed gateway requests in a given period.
+      - provider_name: OtherRequests
+        unit: Count
+        description: The total number of gateway requests in a given period that do not fall into the successful, unauthorized, or failed categories.
+      - provider_name: Duration
+        unit: Milliseconds
+        description: The time between when API Management receives a request from a client and when it returns a response to the client.
+      - provider_name: Capacity
+        unit: Percent
+        description: Indicator of load on an API Management instance.
+      - provider_name: EventHubTotalEvents
+        unit: Count
+        description: The total number of events sent to EventHub from API Management in a given period.
+      - provider_name: EventHubSuccessfulEvents
+        unit: Count
+        description: The total number of successful EventHub events in a given period.
+      - provider_name: EventHubTotalFailedEvents
+        unit: Count
+        description: The total number of failed EventHub events in a given period.
+      - provider_name: EventHubRejectedEvents
+        unit: Count
+        description: The total number of rejected EventHub events (wrong configuration or unauthorized) in a given period.
+      - provider_name: EventHubThrottledEvents
+        unit: Count
+        description: The total number of throttled EventHub events in a given period.
+      - provider_name: EventHubTimedoutEvents
+        unit: Count
+        description: The total number of timed out EventHub events in a given period.
+      - provider_name: EventHubDroppedEvents
+        unit: Count
+        description: The total number of events skipped because of queue size limit reached in a given period.
+      - provider_name: EventHubTotalBytesSent
+        unit: Bytes
+        description: The total size of EventHub events in bytes in a given period.

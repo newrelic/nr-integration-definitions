@@ -1,0 +1,142 @@
+provider: aws
+service: mq
+display_name: MQ
+entities:
+  - name: Broker
+    delay: 180
+    properties:
+      arn_id: broker:{Broker}
+      dimension_to_arn: .+?(?=-\d+$)
+      namespace: AWS/AmazonMQ
+      dimensions: [ Broker ]
+    metrics:
+      - provider_name: CpuCreditBalance
+        unit: Count
+        description: >
+          The number of earned CPU credits that an instance has accrued since it was launched or started (including the number of launch credits). The credit balance is available for the broker instance to spend on bursts beyond the baseline CPU utilization.
+          This metric is available only for the mq.t2.micro broker instance type.
+          CPU credit metrics are available only at five-minute intervals.
+      - provider_name: CpuUtilization
+        unit: Percent
+        description: "The percentage of allocated EC2 compute units that the broker currently uses."
+      - provider_name: CurrentConnectionsCount
+        unit: Count
+        description: "The current number of active connections on the current broker."
+      - provider_name: EstablishedConnectionsCount
+        unit: Count
+        description: "The total number of connections, active and inactive, that have been established on the broker."
+      - provider_name: InactiveDurableTopicSubscribersCount
+        unit: Count
+        description: "The number of inactive durable topic subscribers, up to a maximum of 2000."
+      - provider_name: JournalFilesForFastRecovery
+        unit: Count
+        description: "The number of journal files that will be replayed after a clean shutdown."
+      - provider_name: JournalFilesForFullRecovery
+        unit: Count
+        description: "The number of journal files that will be replayed after an unclean shutdown."
+      - provider_name: HeapUsage
+        unit: Percent
+        description: "The percentage of the ActiveMQ JVM memory limit that the broker currently uses."
+      - provider_name: NetworkIn
+        unit: Bytes
+        description: "The volume of incoming traffic for the broker."
+      - provider_name: NetworkOut
+        unit: Bytes
+        description: "The volume of outgoing traffic for the broker."
+      - provider_name: OpenTransactionsCount
+        unit: Count
+        description: "The total number of transactions in progress."
+      - provider_name: StorePercentUsage
+        unit: Percent
+        description: "The percent used by the storage limit. If this reaches 100 the broker will refuse messages."
+      - provider_name: TotalConsumerCount
+        unit: Count
+        description: "The number of message consumers subscribed to destinations on the current broker."
+      - provider_name: TotalMessageCount
+        unit: Count
+        description: "The number of messages stored on the broker."
+      - provider_name: TotalProducerCount
+        unit: Count
+        description: "The number of message producers active on destinations on the current broker."
+
+  - name: Topic
+    delay: 180
+    properties:
+      arn_id: broker:{Broker}
+      dimension_to_arn: .+?(?=-\d+$)
+      namespace: AWS/AmazonMQ
+      dimensions: [ Broker, Topic ]
+    metrics:
+      - provider_name: ConsumerCount
+        unit: Count
+        description: "The number of consumers subscribed to the destination."
+      - provider_name: EnqueueCount
+        unit: Count
+        description: "The number of messages sent to the destination, per minute."
+      - provider_name: EnqueueTime
+        unit: Milliseconds
+        description: "The end-to-end latency from when a message arrives at a broker until it is delivered to a consumer."
+      - provider_name: ExpiredCount
+        unit: Count
+        description: "The number of messages that couldn't be delivered because they expired, per minute."
+      - provider_name: DispatchCount
+        unit: Count
+        description: "The number of messages sent to consumers, per minute."
+      - provider_name: DequeueCount
+        unit: Count
+        description: "The number of messages acknowledged by consumers, per minute."
+      - provider_name: ReceiveCount
+        unit: Count
+        description: "The number of messages that have been received from the remote broker for a duplex network connector."
+      - provider_name: InFlightCount
+        unit: Count
+        description: "The number of messages sent to consumers that have not been acknowledged."
+      - provider_name: MemoryUsage
+        unit: Percent
+        description: "The percentage of the memory limit that the destination currently uses."
+      - provider_name: ProducerCount
+        unit: Count
+        description: "The number of producers for the destination."
+
+  - name: Queue
+    delay: 180
+    properties:
+      arn_id: broker:{Broker}
+      dimension_to_arn: .+?(?=-\d+$)
+      namespace: AWS/AmazonMQ
+      dimensions: [ Broker, Queue ]
+    metrics:
+      - provider_name: ConsumerCount
+        unit: Count
+        description: "The number of consumers subscribed to the destination."
+      - provider_name: EnqueueCount
+        unit: Count
+        description: "The number of messages sent to the destination, per minute."
+      - provider_name: EnqueueTime
+        unit: Milliseconds
+        description: "The end-to-end latency from when a message arrives at a broker until it is delivered to a consumer."
+      - provider_name: ExpiredCount
+        unit: Count
+        description: "The number of messages that couldn't be delivered because they expired, per minute."
+      - provider_name: DispatchCount
+        unit: Count
+        description: "The number of messages sent to consumers, per minute."
+      - provider_name: DequeueCount
+        unit: Count
+        description: "The number of messages acknowledged by consumers, per minute."
+      - provider_name: ReceiveCount
+        unit: Count
+        description: "The number of messages that have been received from the remote broker for a duplex network connector."
+      - provider_name: InFlightCount
+        unit: Count
+        description: "The number of messages sent to consumers that have not been acknowledged."
+      - provider_name: MemoryUsage
+        unit: Percent
+        description: "The percentage of the memory limit that the destination currently uses."
+      - provider_name: ProducerCount
+        unit: Count
+        description: "The number of producers for the destination."
+      - provider_name: QueueSize
+        unit: Count
+        description: "The number of messages in the queue."
+

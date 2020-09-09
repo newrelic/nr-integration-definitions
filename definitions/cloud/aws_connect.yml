@@ -1,0 +1,64 @@
+provider: aws
+service: connect
+display_name: Connect
+entities:
+  - name: ContactFlow
+    properties:
+      namespace: AWS/Connect
+      dimensions: [ InstanceId, ContactFlowName ]
+    metrics: 
+      - provider_name: CallRecordingUploadError
+        unit: Count
+        description: "The number of call recordings that failed to upload to the Amazon S3 bucket configured for your instance."
+      - provider_name: ContactFlowErrors
+        unit: Count
+        description: "The number of times the error branch for a contact flow was executed."
+      - provider_name: ContactFlowFatalErrors
+        unit: Count
+        description: "The number of times a contact flow failed to execute due to a system error."
+      - provider_name: MisconfiguredPhoneNumbers
+        unit: Count
+        description: "The number of calls that failed because the phone number is not associated with a contact flow."
+      - provider_name: PublicSigningKeyUsage
+        unit: Count
+        description: "The number of times a contact flow security key (public signing key) was used to encrypt customer input in a contact flow."
+  - name: Instance
+    properties:
+      namespace: AWS/Connect
+      dimensions: [ InstanceId ]
+    metrics:
+      - provider_name: CallsBreachingConcurrencyQuota
+        unit: Count
+        description: "The total number of voice calls that exceeded the concurrent calls quota for the instance."
+      - provider_name: CallsPerInterval
+        unit: Count
+        description: "The number of voice calls, both inbound and outbound, received or placed per second in the instance."
+      - provider_name: ConcurrentCalls
+        unit: Count
+        description: "The number of concurrent active voice calls in the instance."
+      - provider_name: ConcurrentCallsPercentage
+        unit: Percent
+        description: "The percentage of the concurrent active voice calls service quota used in the instance."
+      - provider_name: MissedCalls
+        unit: Count
+        description: "The number of voice calls that were missed by agents during the refresh interval selected"
+      - provider_name: ThrottledCalls
+        unit: Count
+        description: "The number of voice calls that were rejected because the rate of calls per second exceeded the maximum supported quota."
+  - name: Queue
+    properties: 
+      namespace: AWS/Connect
+      dimensions: [ InstanceId, QueueName ]
+    metrics:
+      - provider_name: CallBackNotDialableNumber
+        unit: Count
+        description: "The number of times a queued callback to a customer could not be dialed because the customer's number is in a country for which outbound calls are not allowed for the instance."
+      - provider_name: LongestQueueWaitTime
+        unit: Seconds
+        description: "The longest amount of time, in seconds, that a contact waited in a queue."
+      - provider_name: QueueCapacityExceededError
+        unit: Count
+        description: "The number of calls that were rejected because the queue was full."
+      - provider_name: QueueSize
+        unit: Count
+        description: "The number of contacts in the queue."

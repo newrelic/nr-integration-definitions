@@ -1,0 +1,43 @@
+provider: azure
+service: firewalls
+display_name: Firewalls
+entities:
+  - name: AzureFirewallEntity
+    provider: AzureFirewall
+    event_type: AzureFirewallSample
+    properties:
+      resource_type: Microsoft.Network/azurefirewalls
+      aggregate_dimensions: false
+    metrics:
+      - provider_name: ApplicationRuleHit
+        unit: Count
+        # properties:
+        #   dimensions:
+        #   - Status
+        #   - Reason
+        #   - Protocol
+        description: Number of times Application rules were hit
+      - provider_name: NetworkRuleHit
+        unit: Count
+        # properties:
+        #   dimensions:
+        #   - Status
+        #   - Reason
+        #   - Protocol
+        description: Number of times Network rules were hit
+      - provider_name: FirewallHealth
+        unit: Percent
+        # properties:
+        #   dimensions:
+        #   - Status
+        #   - Reason
+        description: Firewall health state
+      - provider_name: DataProcessed
+        unit: Bytes
+        description: Total amount of data processed by Firewall
+      - provider_name: SNATPortUtilization
+        unit: Percent
+        description: SNAT port utilization
+      - provider_name: Throughput
+        unit: BitsPerSecond
+        description: Throughput processed by this firewall

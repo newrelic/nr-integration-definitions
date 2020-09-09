@@ -1,0 +1,20 @@
+provider: aws
+service: athena
+display_name: Athena
+entities:
+  - name: WorkGroup
+    properties:
+      arn_id: workgroup/{WorkGroup}
+      namespace: AWS/Athena
+      dimensions: [ WorkGroup ]
+    metrics:
+      - provider_name: ProcessedBytes
+        unit: Bytes
+        description: "The amount of data in Megabytes that Athena scanned per query. For queries that were canceled (either by the users, or automatically, if they reached the limit), this includes the amount of data scanned before the cancellation time."
+        properties:
+          dimensions: [ QueryState, QueryType ]
+      - provider_name: TotalExecutionTime
+        unit: Milliseconds
+        description: "The amount of time in seconds it takes Athena to run the query."
+        properties:
+          dimensions: [ QueryState, QueryType ]

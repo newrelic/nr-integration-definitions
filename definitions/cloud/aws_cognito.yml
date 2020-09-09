@@ -1,0 +1,53 @@
+provider: aws
+service: cognito
+display_name: Cognito
+properties:
+  resource_tagging_api_service_name: cognito-idp
+entities:
+  - name: UserPool
+    delay: 300 # 5 minutes
+    properties:
+      namespace: AWS/Cognito
+      arn_id: userpool/{UserPool}
+      dimensions: [ UserPool ]
+    metrics:
+      - provider_name: SignUpSuccesses
+        unit: Count
+        description: "The total number of successful user registration requests made to the Cognito user pool. To find the percentage of successful user registration requests, use the Average attribute on this metric. To count the total number of user registration requests, use the SampleCount attribute on this metric. To count the total number of successful user registration requests, use the Sum attribute on this metric. To count the total number of failed user registration requests, subtract the Sum attribute from the SampleCount attribute."
+        properties:
+          dimensions: [ UserPoolClient ]
+      - provider_name: SignUpThrottles
+        unit: Count
+        description: "The total number of throttled user registration requests. To count the total number of throttled user registration requests, use the Sum attribute for this metric."
+        properties:
+          dimensions: [ UserPoolClient ]
+      - provider_name: SignInSuccesses
+        unit: Count
+        description: "The total number of successful user authentication requests to the user pool. To find the percentage of successful user authentication requests, use the Average attribute on this metric. To count the total number of user authentication requests, use the SampleCount attribute on this metric. To count the total number of successful user authentication requests, use the Sum attribute on this metric. To count the total number of failed user authentication requests, subtract the Sum attribute from the SampleCount attribute."
+        properties:
+          dimensions: [ UserPoolClient ]
+      - provider_name: SignInThrottles
+        unit: Count
+        description: "The total number of throttled user authentication requests made to the Cognito user pool. To count the total number of throttled user authentication requests, use the Sum attribute for this metric."
+        properties:
+          dimensions: [ UserPoolClient ]
+      - provider_name: TokenRefreshSuccesses
+        unit: Count
+        description: "The total number of successful requests to refresh a Cognito token to the user pool. To find the percentage of successful requests to refresh a Cognito token, use the Average attribute on this metric. To count the total number of requests to refresh a Cognito token, use the SampleCount attribute on this metric. To count the total number of successful requests to refresh a Cognito token, use the Sum attribute on this metric. To count the total number of failed requests to refresh a Cognito token, subtract the Sum attribute from the SampleCount attribute."
+        properties:
+          dimensions: [ UserPoolClient ]
+      - provider_name: TokenRefreshThrottles
+        unit: Count
+        description: "The total number of throttled requests to refresh a Cognito token to the user pool. To count the total number of throttled requests to refresh a Cognito token, use the Sum attribute for this metric."
+        properties:
+          dimensions: [ UserPoolClient ]
+      - provider_name: FederationSuccesses
+        unit: Count
+        description: "The total number of successful identity federation requests to the Cognito user pool. To find the percentage of successful identity federation requests, use the Average attribute on this metric. To count the total number of identity federation requests, use the SampleCount attribute on this metric. To count the total number of successful identity federation requests, use the Sum attribute on this metric. To count the total number of failed identity federation requests, subtract the Sum attribute from the SampleCount attribute."
+        properties:
+          dimensions: [ UserPoolClient, IdentityProvider ]
+      - provider_name: FederationThrottles
+        unit: Count
+        description: "The total number of throttled identity federation requests to the Cognito user pool. To count the total number of throttled identity federation requests, use the Sum attribute for this metric."
+        properties:
+          dimensions: [ UserPoolClient, IdentityProvider ]

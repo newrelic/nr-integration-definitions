@@ -1,0 +1,67 @@
+provider: aws
+service: wafV2
+display_name: WAFV2
+entities:
+  - name: WebACL
+    delay: 180
+    properties:
+      namespace: AWS/WAFV2
+      dimensions: [ WebACL ]
+    metrics:
+      - provider_name: AllowedRequests
+        unit: Count
+        properties:
+          dimensions: [ Rule, RuleGroup, Region ]
+          statistics: [ Sum ]
+        description: The number of allowed web requests.
+      - provider_name: BlockedRequests
+        unit: Count
+        properties:
+          dimensions: [ Rule, RuleGroup, Region ]
+          statistics: [ Sum ]
+        description: The number of blocked web requests.
+      - provider_name: CountedRequests
+        unit: Count
+        properties:
+          dimensions: [ RuleGroup, Region ]
+          statistics: [ Sum ]
+        description: A counted web request is one that matches all the conditions in a particular rule. Counted web requests are typically used for testing.
+      - provider_name: PassedRequests
+        unit: Count
+        properties:
+          dimensions: [ Rule, RuleGroup, Region ]
+          statistics: [ Sum ]
+        description: Passed requests are requests that don't match any rule contained in the rule group.
+
+  - name: RuleGroup
+    delay: 180
+    properties:
+      namespace: AWS/WAFV2
+      dimensions: [ RuleGroup ]
+    metrics:
+      - provider_name: AllowedRequests
+        unit: Count
+        properties:
+          dimensions: [ Rule, WebAcl, Region ]
+          statistics: [ Sum ]
+        description: The number of allowed web requests.
+      - provider_name: BlockedRequests
+        unit: Count
+        properties:
+          dimensions: [ Rule, WebAcl, Region ]
+          statistics: [ Sum ]
+        description: The number of blocked web requests.
+      - provider_name: CountedRequests
+        unit: Count
+        properties:
+          dimensions: [ WebAcl, Region ]
+          statistics: [ Sum ]
+        description: A counted web request is one that matches all the conditions in a particular rule. Counted web requests are typically used for testing.
+      - provider_name: PassedRequests
+        unit: Count
+        properties:
+          dimensions: [ Rule, WebAcl, Region ]
+          statistics: [ Sum ]
+        description: Passed requests are requests that don't match any rule contained in the rule group.
+
+

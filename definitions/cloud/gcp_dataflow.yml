@@ -1,0 +1,123 @@
+provider: gcp
+service: dataflow
+display_name: Dataflow
+properties:
+  resource_uri: dataflow.googleapis.com
+entities:
+- name: Job
+  properties:
+    labels:
+    - project_id
+    - job_name
+    - region
+  metrics:
+  - provider_name: job/billable_shuffle_data_processed
+    unit: Bytes
+    properties:
+      labels:
+      - job_id
+    description: The billable bytes of shuffle data processed by this Dataflow job.
+  - provider_name: job/current_num_vcpus
+    unit: Count
+    properties:
+      labels:
+      - job_id
+    description: The number of vCPUs currently being used by this Dataflow job. This is the current number of workers times the number of vCPUs per worker.
+  - provider_name: job/current_shuffle_slots
+    unit: Count
+    properties:
+      labels:
+      - job_id
+    description: The current shuffle slots used by this Dataflow job.
+  - provider_name: job/data_watermark_age
+    unit: Seconds
+    properties:
+      labels:
+      - job_id
+    description: The age (time since event timestamp) up to which all data has been processed by the pipeline.
+  - provider_name: job/elapsed_time
+    unit: Seconds
+    properties:
+      labels:
+      - job_id
+    description: Duration that the current run of this pipeline has been in the Running state so far, in seconds. When a run completes, this stays at the duration of that run until the next run starts.
+  - provider_name: job/element_count
+    nrdb_name: job.Elements
+    unit: Count
+    properties:
+      labels:
+      - job_id
+      - pcollection
+    description: Number of elements added to the pcollection so far.
+  - provider_name: job/estimated_byte_count
+    nrdb_name: job.EstimatedBytes
+    unit: Bytes
+    properties:
+      labels:
+      - job_id
+      - pcollection
+    description: An estimated number of bytes added to the pcollection so far.  Dataflow calculates the average encoded size of elements in a pcollection and mutiplies it by the number of elements.
+  - provider_name: job/is_failed
+    unit: Count
+    description: Has this job failed.
+  - provider_name: job/per_stage_data_watermark_age
+    unit: Seconds
+    properties:
+      labels:
+      - job_id
+      - stage
+    description: The age (time since event timestamp) up to which all data has been processed by this stage of the pipeline.
+  - provider_name: job/per_stage_system_lag
+    unit: Seconds
+    properties:
+      labels:
+      - job_id
+      - stage
+    description: The current maximum duration that an item of data has been processing or awaiting processing in seconds, per pipeline stage.
+  - provider_name: job/system_lag
+    unit: Seconds
+    properties:
+      labels:
+      - job_id
+    description: The current maximum duration that an item of data has been processing or awaiting processing, in seconds.
+  - provider_name: job/total_memory_usage_time
+    # unit: GBy.s we'll skip this unit as it's unlikely to be supported in dimensional metric
+    unit: Other
+    properties:
+      labels:
+      - job_id
+    description: The total GB seconds of memory allocated to this Dataflow job.
+  - provider_name: job/total_pd_usage_time
+    # unit: GBy.s we'll skip this unit as it's unlikely to be supported in dimensional metric
+    unit: Other
+    properties:
+      labels:
+      - job_id
+      - storage_type
+    description: The total GB seconds for all persistent disk used by all workers associated with this Dataflow job.
+  - provider_name: job/total_shuffle_data_processed
+    unit: Bytes
+    properties:
+      labels:
+      - job_id
+    description: The total bytes of shuffle data processed by this Dataflow job.
+  - provider_name: job/total_streaming_data_processed
+    unit: Bytes
+    properties:
+      labels:
+      - job_id
+    description: The total bytes of streaming data processed by this Dataflow job.
+  - provider_name: job/total_vcpu_time
+    unit: Seconds
+    properties:
+      labels:
+      - job_id
+    description: The total vCPU seconds used by this Dataflow job.
+  - provider_name: job/user_counter
+    unit: Count
+    properties:
+      labels:
+      - metric_name
+      - job_id
+      - ptransform
+    description: A user-defined counter metric.

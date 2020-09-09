@@ -1,0 +1,44 @@
+provider: gcp
+service: run
+display_name: Run
+properties:
+  resource_uri: run.googleapis.com
+entities:
+- name: Revision
+  properties:
+    labels:
+    - project_id
+    - service_name
+    - revision_name
+    - location
+    - configuration_name
+  metrics:
+  - provider_name: container/billable_instance_time
+    unit: Seconds
+    description: 'Billable time aggregated from all container instances of the revision. For a given container instance, billable time occurs when the container instance is starting or at least one request is being processed. Billable time is rounded up to the nearest 100 milliseconds. Examples: If a revision with 2 container instances has been continuously serving traffic in the last minute, the value is 2s/s with the default "rate" aligner. If a single request lasting 30ms was received by a revision in the past minute, it is rounded up to 100ms and averaged to 1.7ms/s over the minute with the default "rate" aligner.'
+
+  - provider_name: container/cpu/allocation_time
+    unit: Seconds
+    description: Container CPU allocation of the revision in seconds.
+
+  - provider_name: container/memory/allocation_time
+    unit: Other
+    description: Container memory allocation of the revision in Gigabytes-seconds.
+
+  - provider_name: request_count
+    unit: Count
+    properties:
+      labels:
+      - response_code
+      - response_code_class
+      - route
+    description: Number of requests reaching the revision. Excludes requests that are not reaching your container instances (e.g. unauthorized requests or when maximum number of instances is reached).
+
+  - provider_name: request_latencies
+    unit: Milliseconds
+    properties:
+      labels:
+      - response_code
+      - response_code_class
+      - route
+    description: Distribution of request latency in milliseconds reaching the revision.

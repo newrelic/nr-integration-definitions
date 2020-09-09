@@ -1,0 +1,51 @@
+provider: azure
+service: keyVault
+display_name: Key Vault
+entities:
+- name: Vault
+  properties:
+    resource_type: Microsoft.KeyVault/vaults
+    aggregate_dimensions: false
+  metrics:
+  - provider_name: ServiceApiHit
+    unit: Count
+    # properties:
+    #   dimensions:
+    #   - ActivityType
+    #   - ActivityName
+    description: Number of total service api hits
+  - provider_name: ServiceApiLatency
+    unit: Milliseconds
+    # properties:
+    #   dimensions:
+    #   - ActivityType
+    #   - ActivityName
+    #   - StatusCode
+    #   - StatusCodeClass
+    description: Overall latency of service api requests
+  - provider_name: ServiceApiResult
+    unit: Count
+    # properties:
+    #   dimensions:
+    #   - ActivityType
+    #   - ActivityName
+    #   - StatusCode
+    #   - StatusCodeClass
+    description: Number of total service api results
+  - provider_name: SaturationShoebox
+    unit: Percent
+    # properties:
+    #   dimensions:
+    #   - ActivityType
+    #   - ActivityName
+    #   - TransactionType
+    description: Vault capacity used
+  - provider_name: Availability
+    unit: Percent
+    # properties:
+    #   dimensions:
+    #   - ActivityType
+    #   - ActivityName
+    #   - StatusCode
+    #   - StatusCodeClass
+    description: Vault requests availability

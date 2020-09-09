@@ -1,0 +1,39 @@
+provider: aws
+service: qldb
+display_name: QLDB
+entities:
+  - name: Ledger
+    properties:
+      arn_id: ledger/{LedgerName}
+      namespace: AWS/QLDB
+      dimensions: [ LedgerName ]
+    metrics:
+      - provider_name: JournalStorage
+        unit: Bytes
+        description: "The total amount of disk space used by the ledger's journal, reported in 15-minute intervals. The journal contains the complete, immutable, and verifiable history of all the changes to your data."
+      - provider_name: IndexedStorage
+        unit: Bytes
+        description: "The total amount of disk space used by the ledger's tables, indexes, and indexed history, reported in 15-minute intervals. Indexed storage consists of ledger data that is optimized for high-performance queries."
+      - provider_name: ReadIOs
+        unit: Count
+        description: "The number of disk read I/O operations, reported in one-minute intervals."
+      - provider_name: WriteIOs
+        unit: Count
+        description: "The number of disk write I/O operations, reported in one-minute intervals."
+      - provider_name: CommandLatency
+        unit: Milliseconds
+        properties:
+          dimensions: [ CommandType ]
+        description: "The amount of time taken for data operations, reported in one-minute intervals."
+      - provider_name: OccConflictExceptions
+        unit: Count
+        description: "The number of requests to QLDB that generate an OccConflictException."
+      - provider_name: Session4xxExceptions
+        unit: Count
+        description: "The number of requests to QLDB that generate an HTTP 4xx error."
+      - provider_name: Session5xxExceptions
+        unit: Count
+        description: "The number of requests to QLDB that generate an HTTP 5xx error."
+      - provider_name: SessionRateExceededExceptions
+        unit: Count
+        description: "The number of requests to QLDB that generate a SessionRateExceededException."

@@ -1,0 +1,225 @@
+provider: aws
+service: msk
+display_name: Managed Kafka
+properties:
+  resource_tagging_api_service_name: kafka
+entities:
+  - name: Cluster
+    properties:
+      arn_id: cluster/{Cluster Name}
+      namespace: AWS/Kafka
+      dimensions: [ Cluster Name ]
+    metrics:
+      - provider_name: ActiveControllerCount
+        unit: Count
+        description: "Only one controller per cluster should be active at any given time."
+      - provider_name: GlobalPartitionCount
+        unit: Count
+        description: "Total number of partitions across all brokers in the cluster."
+      - provider_name: GlobalTopicCount
+        unit: Count
+        description: "Total number of topics across all brokers in the cluster."
+      - provider_name: OfflinePartitionsCount
+        unit: Count
+        description: "Total number of partitions that are offline in the cluster."
+  - name: Broker
+    properties:
+      arn_id: cluster/{Cluster Name}
+      namespace: AWS/Kafka
+      dimensions: [ Cluster Name, Broker ID ]
+    metrics:
+      - provider_name: BytesInPerSec
+        unit: BytesPerSecond
+        description: "The number of bytes per second received from clients."
+      - provider_name: BytesOutPerSec
+        unit: BytesPerSecond
+        description: "The number of bytes per second sent to clients."
+      - provider_name: CpuSystem
+        unit: Percent
+        description: "The percentage of CPU in kernel space."
+      - provider_name: CpuUser
+        unit: Percent
+        description: "The percentage of CPU in user space."
+      - provider_name: CpuIdle
+        unit: Percent
+        description: "The percentage of CPU idle time."
+      - provider_name: FetchConsumerLocalTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that the consumer request is processed at the leader."
+      - provider_name: FetchConsumerRequestQueueTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that the consumer request waits in the request queue."
+      - provider_name: FetchConsumerResponseQueueTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that the consumer request waits in the response queue."
+      - provider_name: FetchConsumerResponseSendTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds for the consumer to send a response."
+      - provider_name: FetchConsumerTotalTimeMsMean
+        unit: Milliseconds
+        description: "The mean total time in milliseconds that consumers spend on fetching data from the broker."
+      - provider_name: FetchFollowerLocalTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that the follower request is processed at the leader."
+      - provider_name: FetchFollowerRequestQueueTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that the follower request waits in the request queue."
+      - provider_name: FetchFollowerResponseQueueTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that the follower request waits in the response queue."
+      - provider_name: FetchFollowerResponseSendTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds for the follower to send a response."
+      - provider_name: FetchFollowerTotalTimeMsMean
+        unit: Milliseconds
+        description: "The mean total time in milliseconds that followers spend on fetching data from the broker."
+      - provider_name: FetchMessageConversionsPerSec
+        unit: CountPerSecond
+        description: "The number of fetch message conversions per second for the broker."
+      - provider_name: FetchThrottleTime
+        unit: Milliseconds
+        description: "The average fetch throttle time in milliseconds."
+      - provider_name: FetchThrottleByteRate
+        unit: BytesPerSecond
+        description: "The number of throttled bytes per second."
+      - provider_name: FetchThrottleQueueSize
+        unit: Count
+        description: "The number of messages in the throttle queue."
+      - provider_name: KafkaAppLogsDiskUsed
+        unit: Percent
+        description: "The percentage of disk space used for application logs."
+      - provider_name: KafkaDataLogsDiskUsed
+        unit: Percent
+        description: "The percentage of disk space used for data logs."
+      - provider_name: LeaderCount
+        unit: Count
+        description: "The number of leader replicas."
+      - provider_name: MemoryBuffered
+        unit: Bytes
+        description: "The size in bytes of buffered memory for the broker."
+      - provider_name: MemoryCached
+        unit: Bytes
+        description: "The size in bytes of cached memory for the broker."
+      - provider_name: MemoryFree
+        unit: Bytes
+        description: "The size in bytes of memory that is free and available for the broker."
+      - provider_name: MemoryUsed
+        unit: Bytes
+        description: "The size in bytes of memory that is in use for the broker."
+      - provider_name: MessagesInPerSec
+        unit: CountPerSecond
+        description: "The number of incoming messages per second for the broker."
+      - provider_name: NetworkProcessorAvgIdlePercent
+        unit: Percent
+        description: "The average percentage of the time the network processors are idle."
+      - provider_name: NetworkRxDropped
+        unit: Count
+        description: "The number of dropped receive packages."
+      - provider_name: NetworkRxErrors
+        unit: Count
+        description: "The number of network receive errors for the broker."
+      - provider_name: NetworkRxPackets
+        unit: Count
+        description: "The number of packets received by the broker."
+      - provider_name: NetworkTxDropped
+        unit: Count
+        description: "The number of dropped transmit packages."
+      - provider_name: NetworkTxErrors
+        unit: Count
+        description: "The number of network transmit errors for the broker."
+      - provider_name: NetworkTxPackets
+        unit: Count
+        description: "The number of packets transmitted by the broker."
+      - provider_name: PartitionCount
+        unit: Count
+        description: "The number of partitions for the broker."
+      - provider_name: ProduceLocalTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds for the follower to send a response."
+      - provider_name: ProduceMessageConversionsPerSec
+        unit: CountPerSecond
+        description: "The number of produce message conversions per second for the broker."
+      - provider_name: ProduceMessageConversionsTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds spent on message format conversions."
+      - provider_name: ProduceRequestQueueTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that request messages spend in the queue."
+      - provider_name: ProduceResponseQueueTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds that response messages spend in the queue."
+      - provider_name: ProduceResponseSendTimeMsMean
+        unit: Milliseconds
+        description: "The mean time in milliseconds spent on sending response messages."
+      - provider_name: ProduceTotalTimeMsMean
+        unit: Milliseconds
+        description: "The mean produce time in milliseconds."
+      - provider_name: ProduceThrottleTime
+        unit: Milliseconds
+        description: "The average produce throttle time in milliseconds."
+      - provider_name: ProduceThrottleByteRate
+        unit: BytesPerSecond
+        description: "The number of throttled bytes per second."
+      - provider_name: ProduceThrottleQueueSize
+        unit: Count
+        description: "The number of messages in the throttle queue."
+      - provider_name: RequestBytesMean
+        unit: Count
+        description: "The mean number of request bytes for the broker."
+      - provider_name: RequestExemptFromThrottleTime
+        unit: Milliseconds
+        description: "The average time spent in broker network and I/O threads to process requests that are exempt from throttling."
+      - provider_name: RequestHandlerAvgIdlePercent
+        unit: Percent
+        description: "The average percentage of the time the request handler threads are idle."
+      - provider_name: RequestThrottleQueueSize
+        unit: Count
+        description: "The number of messages in the throttle queue."
+      - provider_name: RequestThrottleTime
+        unit: Milliseconds
+        description: "The average request throttle time in milliseconds."
+      - provider_name: RequestTime
+        unit: Milliseconds
+        description: "The average time spent in broker network and I/O threads to process requests."
+      - provider_name: RootDiskUsed
+        unit: Percent
+        description: "The percentage of the root disk used by the broker."
+      - provider_name: SwapUsed
+        unit: Bytes
+        description: "The size in bytes of swap memory that is in use for the broker."
+      - provider_name: SwapFree
+        unit: Bytes
+        description: "The size in bytes of swap memory that is available for the broker."
+      - provider_name: UnderMinIsrPartitionCount
+        unit: Count
+        description: "The number of under minIsr partitions for the broker."
+      - provider_name: UnderReplicatedPartitions
+        unit: Count
+        description: "The number of under-replicated partitions for the broker."
+      - provider_name: ZooKeeperRequestLatencyMsMean
+        unit: Milliseconds
+        description: "Mean latency in milliseconds for ZooKeeper requests from broker."
+      - provider_name: ZooKeeperSessionState
+        unit: Other
+        description: "Connection status of broker's ZooKeeper session which may be one of the following: NOT_CONNECTED: '0.0', ASSOCIATING: '0.1', CONNECTING: '0.5', CONNECTEDREADONLY: '0.8', CONNECTED: '1.0', CLOSED: '5.0', AUTH_FAILED: '10.0'."
+  - name: Topic
+    properties:
+      arn_id: cluster/{Cluster Name}
+      namespace: AWS/Kafka
+      dimensions: [ Cluster Name, Broker ID, Topic ]
+    metrics:
+      - provider_name: BytesInPerSec
+        unit: BytesPerSecond
+        description: "The number of bytes received per second."
+      - provider_name: BytesOutPerSec
+        unit: BytesPerSecond
+        description: "The number of bytes sent per second."
+      - provider_name: FetchMessageConversionsPerSec
+        unit: CountPerSecond
+        description: "The number of fetched messages converted per second."
+      - provider_name: MessagesInPerSec
+        unit: CountPerSecond
+        description: "The number of messages received per second."
+      - provider_name: ProduceMessageConversionsPerSec
+        unit: CountPerSecond
+        description: "The number of conversions per second for produced messages."

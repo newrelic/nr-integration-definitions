@@ -1,0 +1,83 @@
+provider: azure
+service: frontDoor
+display_name: Front Door
+entities:
+- name: FrontDoor
+  properties:
+    resource_type: Microsoft.Network/frontdoors
+  metrics:
+    - provider_name: RequestCount
+      unit: Count
+#      properties:
+#        dimensions:
+#          - HttpStatus
+#          - HttpStatusGroup
+#          - ClientRegion
+#          - ClientCountry
+      description: The number of client requests served by the HTTP/S proxy
+    - provider_name: RequestSize
+      unit: Bytes
+#      properties:
+#        dimensions:
+#          - HttpStatus
+#          - HttpStatusGroup
+#          - ClientRegion
+#          - ClientCountry
+      description: The number of bytes sent as requests from clients to the HTTP/S proxy
+    - provider_name: ResponseSize
+      unit: Bytes
+#      properties:
+#        dimensions:
+#          - HttpStatus
+#          - HttpStatusGroup
+#          - ClientRegion
+#          - ClientCountry
+      description: The number of bytes sent as responses from HTTP/S proxy to clients
+    - provider_name: BillableResponseSize
+      unit: Bytes
+#      properties:
+#        dimensions:
+#          - HttpStatus
+#          - HttpStatusGroup
+#          - ClientRegion
+#          - ClientCountry
+      description: The number of billable bytes (minimum 2KB per request) sent as responses from HTTP/S proxy to clients.
+    - provider_name: BackendRequestCount
+      unit: Count
+#      properties:
+#        dimensions:
+#          - HttpStatus
+#          - HttpStatusGroup
+#          - Backend
+      description: The number of requests sent from the HTTP/S proxy to backends
+    - provider_name: BackendRequestLatency
+      unit: Milliseconds
+#      properties:
+#        dimensions:
+#          - Backend
+      description: The time calculated from when the request was sent by the HTTP/S proxy to the backend until the HTTP/S proxy received the last response byte from the backend
+    - provider_name: TotalLatency
+      unit: Milliseconds
+#      properties:
+#        dimensions:
+#          - HttpStatus
+#          - HttpStatusGroup
+#          - ClientRegion
+#          - ClientCountry
+      description: The time calculated from when the client request was received by the HTTP/S proxy until the client acknowledged the last response byte from the HTTP/S proxy
+    - provider_name: BackendHealthPercentage
+      nrdb_name: BackendHealth
+      unit: Percent
+#      properties:
+#        dimensions:
+#          - Backend
+#          - BackendPool
+      description: The percentage of successful health probes from the HTTP/S proxy to backends
+    - provider_name: WebApplicationFirewallRequestCount
+      unit: Count
+#      properties:
+#        dimensions:
+#          - PolicyName
+#          - RuleName
+#          - Action
+      description: The number of client requests processed by the Web Application Firewall

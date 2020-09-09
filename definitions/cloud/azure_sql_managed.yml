@@ -1,0 +1,43 @@
+provider: azure
+service: sqlManaged
+display_name: SQL Managed Instances
+entities:
+  - name: Instance
+    properties:
+      resource_type: Microsoft.Sql/managedInstances
+
+    metrics:
+      - provider_name: avg_cpu_percent
+        nrdb_name: avgCpu
+        unit: Percent
+        description: Average CPU percentage
+        
+      - provider_name: io_bytes_read
+        nrdb_name: ioRead
+        unit: Bytes
+        description: IO bytes read
+        
+      - provider_name: io_requests
+        nrdb_name: ioRequests
+        unit: Count
+        description: IO requests count
+        
+      - provider_name: io_bytes_written
+        nrdb_name: ioWritten
+        unit: Bytes
+        description: IO bytes written
+        
+      - provider_name: reserved_storage_mb
+        nrdb_name: reservedStorage
+        unit: Count
+        description: Storage space reserved
+        
+      - provider_name: storage_space_used_mb
+        nrdb_name: storageSpaceUsed
+        unit: Count
+        description: Storage space used
+        
+      - provider_name: virtual_core_count
+        nrdb_name: virtualCore
+        unit: Count
+        description: Virtual core count

@@ -1,0 +1,36 @@
+provider: aws
+service: transitGateway
+display_name: Transit Gateway
+properties:
+  resource_tagging_api_service_name: ec2 # This service is under EC2 umbrella
+entities:
+  - name: TransitGateway
+    properties:
+      arn_id: transit-gateway/{TransitGateway}
+      namespace: AWS/TransitGateway
+      dimensions: [ TransitGateway ]
+    metrics:
+      - provider_name: BytesIn
+        unit: Count
+        description: "The number of bytes received by the transit gateway."
+      - provider_name: BytesOut
+        unit: Count
+        description: "The number of bytes sent from the transit gateway."
+      - provider_name: PacketsIn
+        unit: Count
+        description: "The number of packets received by the transit gateway."
+      - provider_name: PacketsOut
+        unit: Count
+        description: "The number of packets sent by the transit gateway."
+      - provider_name: PacketDropCountBlackhole
+        unit: Count
+        description: "The number of packets dropped because they matched a blackhole route."
+      - provider_name: PacketDropCountNoRoute
+        unit: Count
+        description: "The number of packets dropped because they did not match a route."
+      - provider_name: BytesDropCountBlackhole
+        unit: Count
+        description: "The number of bytes dropped because they matched a blackhole route."
+      - provider_name: BytesDropCountNoRoute
+        unit: Count
+        description: "The number of bytes dropped because they did not match a route."

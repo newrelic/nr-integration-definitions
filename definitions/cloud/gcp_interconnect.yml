@@ -1,0 +1,78 @@
+provider: gcp
+service: interconnect
+display_name: Interconnect
+properties:
+  resource_uri: interconnect.googleapis.com
+entities:
+- name: Interconnect
+  properties:
+    labels:
+    - project_id
+    - interconnect
+  metrics:
+  - provider_name: network/interconnect/capacity
+    unit: BytesPerSecond
+    description: Active capacity of the interconnect.
+  - provider_name: network/interconnect/dropped_packets_count
+    unit: Count
+    description: Number of outbound packets dropped due to link congestion.
+  - provider_name: network/interconnect/link/rx_power
+    # we'll skip this unit as it's unlikely to be supported in dimensional metrics
+    # unit: '{dBm}'
+    unit: Other
+    properties:
+      labels:
+      - link_id
+      - laser_index
+    description: Light level received over physical circuit.
+  - provider_name: network/interconnect/link/tx_power
+    # we'll skip this unit as it's unlikely to be supported in dimensional metrics
+    # unit: '{dBm}'
+    unit: Other
+    properties:
+      labels:
+      - link_id
+      - laser_index
+    description: Light level transmitted over physical circuit.
+  - provider_name: network/interconnect/receive_errors_count
+    unit: Count
+    description: Number of errors encountered while receiving packets.
+  - provider_name: network/interconnect/received_bytes_count
+    unit: Bytes
+    description: Number of inbound bytes received.
+  - provider_name: network/interconnect/received_unicast_packets_count
+    unit: Count
+    description: Number of inbound unicast packets received.
+  - provider_name: network/interconnect/send_errors_count
+    unit: Count
+    description: Number of errors encountered while sending packets.
+  - provider_name: network/interconnect/sent_bytes_count
+    unit: Bytes
+    description: Number of outbound bytes sent.
+  - provider_name: network/interconnect/sent_unicast_packets_count
+    unit: Count
+    description: Number of outbound unicast packets sent.
+- name: Attachment
+  properties:
+    labels:
+    - project_id
+    - attachment
+    - interconnect
+    - region
+    - interconnect_project
+  metrics:
+  - provider_name: network/attachment/capacity
+    unit: BytesPerSecond
+    description: Network Capacity of the Attachment.
+  - provider_name: network/attachment/received_bytes_count
+    unit: Bytes
+    description: Number of inbound bytes received.
+  - provider_name: network/attachment/received_packets_count
+    unit: Count
+    description: Number of inbound packets received.
+  - provider_name: network/attachment/sent_bytes_count
+    unit: Bytes
+    description: Number of outbound bytes sent.
+  - provider_name: network/attachment/sent_packets_count
+    unit: Count
+    description: Number of outbound packets sent.

@@ -1,0 +1,137 @@
+provider: gcp
+service: dataproc
+display_name: Dataproc
+properties:
+  resource_uri: dataproc.googleapis.com
+entities:
+- name: Cluster
+  properties:
+    labels:
+      - project_id
+      - cluster_name
+      - cluster_uuid
+      - region
+  metrics:
+    - provider_name: cluster/hdfs/datanodes
+      unit: Count
+      properties:
+        labels:
+          - status
+      description: Indicates the number of HDFS DataNodes that are running inside a cluster.
+    - provider_name: cluster/hdfs/storage_capacity
+      unit: Gibibytes
+      properties:
+        labels:
+          - status
+      description: Indicates capacity of HDFS system running on cluster in GB.
+    - provider_name: cluster/hdfs/storage_utilization
+      unit: Percent
+      description: The percentage of HDFS storage currently used.
+    - provider_name: cluster/hdfs/unhealthy_blocks
+      unit: Count
+      properties:
+        labels:
+          - status
+      description: Indicates the number of unhealthy blocks inside the cluster.
+    - provider_name: cluster/job/completion_time
+      unit: Seconds
+      properties:
+        labels:
+        - job_type
+      description: The time jobs took to complete from the time the user submits a job to the time Dataproc reports it is completed.
+    - provider_name: cluster/job/duration
+      unit: Seconds
+      properties:
+        labels:
+        - job_type
+        - state
+      description: The time jobs have spent in a given state.
+    - provider_name: cluster/job/failed_count
+      nrdb_name: cluster.job.Failures
+      unit: Count
+      properties:
+        labels:
+        - error_type
+        - job_type
+      description: Indicates the number of jobs that have failed on a cluster.
+    - provider_name: cluster/job/running_count
+      unit: Count
+      properties:
+        labels:
+        - job_type
+      description: Indicates the number of jobs that are running on a cluster.
+    - provider_name: cluster/job/submitted_count
+      unit: Count
+      properties:
+        labels:
+        - job_type
+      description: Indicates the number of jobs that have been submitted to a cluster.
+    - provider_name: cluster/operation/completion_time
+      unit: Seconds
+      properties:
+        labels:
+        - operation_type
+      description: The time operations took to complete from the time the user submits a operation to the time Dataproc reports it is completed.
+    - provider_name: cluster/operation/duration
+      unit: Seconds
+      properties:
+        labels:
+        - operation_type
+        - state
+      description: The time operations have spent in a given state.
+    - provider_name: cluster/operation/failed_count
+      nrdb_name: cluster.operation.Failures
+      unit: Count
+      properties:
+        labels:
+        - error_type
+        - operation_type
+      description: Indicates the number of operations that have failed on a cluster.
+    - provider_name: cluster/operation/running_count
+      unit: Count
+      properties:
+        labels:
+        - operation_type
+      description: Indicates the number of operations that are running on a cluster.
+    - provider_name: cluster/operation/submitted_count
+      unit: Count
+      properties:
+        labels:
+        - operation_type
+      description: Indicates the number of operations that have been submitted to a cluster.
+    - provider_name: cluster/yarn/allocated_memory_percentage
+      unit: Percent
+      description: The percentage of YARN memory is allocated.
+    - provider_name: cluster/yarn/apps
+      unit: Count
+      properties:
+        labels:
+          - status
+      description: Indicates the number of active YARN applications.
+    - provider_name: cluster/yarn/containers
+      unit: Count
+      properties:
+        labels:
+          - status
+      description: Indicates the number of YARN containers.
+    - provider_name: cluster/yarn/memory_size
+      unit: Gibibytes
+      properties:
+        labels:
+          - status
+      description: Indicates the YARN memory size in GB.
+    - provider_name: cluster/yarn/nodemanagers
+      unit: Count
+      properties:
+        labels:
+          - status
+      description: Indicates the number of YARN NodeManagers running inside cluster.
+    - provider_name: cluster/yarn/pending_memory_size
+      unit: Gibibytes
+      description: The current memory request, in GB, that is pending to be fulfilled by the scheduler.
+    - provider_name: cluster/yarn/virtual_cores
+      unit: Count
+      properties:
+        labels:
+          - status
+      description: Indicates the number of virtual cores in YARN.

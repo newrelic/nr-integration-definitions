@@ -1,0 +1,19 @@
+provider: aws
+service: route53Resolver
+display_name: Route53 Resolver
+entities:
+  - name: Endpoint
+    properties:
+      arn_id: resolver-endpoint/{EndpointId}
+      namespace: AWS/Route53Resolver
+      dimensions: [ EndpointId ]
+    metrics:
+      - provider_name: InboundQueryVolume
+        unit: Count
+        description: For inbound endpoints, the number of DNS queries forwarded from your network to your VPCs through the endpoint specified by EndpointId.
+      - provider_name: OutboundQueryVolume
+        unit: Count
+        description: For outbound endpoints, the number of DNS queries forwarded from your VPCs to your network through the endpoint specified by EndpointId.
+      - provider_name: OutboundQueryAggregatedVolume
+        unit: Count
+        description: For outbound endpoints, the total number of DNS queries forwarded from Amazon VPCs to your network.

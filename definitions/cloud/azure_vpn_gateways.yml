@@ -1,0 +1,40 @@
+provider: azure
+service: vpnGateways
+display_name: VPN Gateways
+entities:
+- name: VPNGateway
+  properties:
+    resource_type: Microsoft.Network/virtualNetworkGateways
+  metrics:
+    - provider_name: AverageBandwidth
+      unit: BytesPerSecond
+      description: Average site-to-site bandwidth of a gateway in bytes per second
+    - provider_name: P2SBandwidth
+      unit: BytesPerSecond
+      description: Average point-to-site bandwidth of a gateway in bytes per second
+    - provider_name: P2SConnectionCount
+      unit: Count
+      description: Point-to-site connection count of a gateway
+    - provider_name: TunnelAverageBandwidth
+      unit: BytesPerSecond
+      description: Average bandwidth of a tunnel in bytes per second
+    - provider_name: TunnelEgressBytes
+      nrdb_name: TunnelEgress
+      unit: Bytes
+      description: Outgoing bytes of a tunnel
+    - provider_name: TunnelIngressBytes
+      nrdb_name: TunnelIngress
+      unit: Bytes
+      description: Incoming bytes of a tunnel
+    - provider_name: TunnelEgressPackets
+      unit: Count
+      description: Outgoing packet count of a tunnel
+    - provider_name: TunnelIngressPackets
+      unit: Count
+      description: Incoming packet count of a tunnel
+    - provider_name: TunnelEgressPacketDropTSMismatch
+      unit: Count
+      description: Outgoing packet drop count from traffic selector mismatch of a tunnel
+    - provider_name: TunnelIngressPacketDropTSMismatch
+      unit: Count
+      description: Incoming packet drop count from traffic selector mismatch of a tunnel

@@ -1,0 +1,86 @@
+provider: azure
+service: containers
+display_name: Containers
+entities:
+- name: InstanceGroup
+  properties:
+    resource_type: Microsoft.ContainerInstance/containerGroups
+  metrics:
+    - provider_name: CpuUsage
+      unit: Count
+#      properties:
+#        dimensions:
+#          - containerName
+      description: CPU usage on all cores in millicores.
+    - provider_name: MemoryUsage
+      unit: Bytes
+#      properties:
+#        dimensions:
+#          - containerName
+      description: Total memory usage in byte.
+    - provider_name: NetworkBytesReceivedPerSecond
+      nrdb_name: networkReceived
+      unit: BytesPerSecond
+      description: The network bytes received per second.
+    - provider_name: NetworkBytesTransmittedPerSecond
+      nrdb_name: networkTransmitted
+      unit: BytesPerSecond
+      description: The network bytes transmitted per second.
+- name: Registry
+  properties:
+    resource_type: Microsoft.ContainerRegistry/registries
+  metrics:
+    - provider_name: TotalPullCount
+      unit: Count
+      description: Number of image pulls in total
+    - provider_name: SuccessfulPullCount
+      unit: Count
+      description: Number of successful image pulls
+    - provider_name: TotalPushCount
+      unit: Count
+      description: Number of image pushes in total
+    - provider_name: SuccessfulPushCount
+      unit: Count
+      description: Number of successful image pushes
+    - provider_name: RunDuration
+      unit: Milliseconds
+      description: Run Duration in milliseconds
+- name: ManagedCluster
+  properties:
+    resource_type: Microsoft.ContainerService/managedClusters
+  metrics:
+    - provider_name: kube_node_status_allocatable_cpu_cores
+      nrdb_name: kubeNodeStatusAllocatableCpuCores
+      unit: Count
+      description: Total number of available cpu cores in a managed cluster
+    - provider_name: kube_node_status_allocatable_memory_bytes
+      nrdb_name: kubeNodeStatusAllocatableMemory
+      unit: Bytes
+      description: Total amount of available memory in a managed cluster
+    - provider_name: kube_pod_status_ready
+      nrdb_name: kubePodStatusReady
+      unit: Count
+#      properties:
+#        dimensions:
+#          - namespace
+#          - pod
+      description: Number of pods in Ready state
+    - provider_name: kube_node_status_condition
+      nrdb_name: kubeNodeStatusCondition
+      unit: Count
+#      properties:
+#        dimensions:
+#          - condition
+#          - status
+#          - status2
+#          - node
+      description: Statuses for various node conditions
+    - provider_name: kube_pod_status_phase
+      nrdb_name: kubePodStatusPhase
+      unit: Count
+#      properties:
+#        dimensions:
+#          - phase
+#          - namespace
+#          - pod
+      description: Number of pods by phase

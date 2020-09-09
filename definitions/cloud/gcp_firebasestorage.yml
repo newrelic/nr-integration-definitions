@@ -1,0 +1,21 @@
+provider: gcp
+service: firebasestorage
+display_name: Firebase Storage
+properties:
+  resource_uri: firebasestorage.googleapis.com
+entities:
+  - name: Bucket
+    properties:
+      labels:
+      - project_id
+      - bucket_name
+      - location
+    metrics:
+    - provider_name: rules/evaluation_count
+      unit: Count
+      properties:
+        labels:
+        - request_method
+        - ruleset_label
+        - result
+      description: The number of Cloud Storage for Firebase Security Rules evaluations performed in response to write or read requests.

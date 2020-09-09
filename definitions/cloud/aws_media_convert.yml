@@ -1,0 +1,43 @@
+provider: aws
+service: mediaConvert
+display_name: Elemental MediaConvert
+entities:
+  - name: Queue
+    properties:
+      namespace: AWS/MediaConvert
+      dimensions: [ Queue ]
+    metrics:
+      - provider_name: AudioOutputDuration
+        unit: Seconds
+        description: "The number of seconds of audio-only output for a queue."
+      - provider_name: SDOutputDuration
+        unit: Seconds
+        description: "The number of seconds of standard definition (SD) output for a queue."
+      - provider_name: HDOutputDuration
+        unit: Seconds
+        description: "The number of seconds of high-definition (HD) output for a queue."
+      - provider_name: UHDOutputDuration
+        unit: Seconds
+        description: "The number of seconds of ultra-high-definition (UHD) output for a queue."
+      - provider_name: 8KOutputDuration
+        unit: Seconds
+        description: "The number of seconds of 8K output for a queue."
+      - provider_name: JobsCompletedCount
+        unit: Count
+        description: "The number of jobs completed in this queue."
+      - provider_name: JobsErroredCount
+        unit: Count
+        description: "The number of jobs that failed because of invalid inputs, such as a request to transcode a file that is not in the specified input bucket."
+      - provider_name: StandbyTime
+        unit: Seconds
+        description: "The number of seconds before AWS Elemental MediaConvert starts transcoding a job."
+      - provider_name: TranscodingTime
+        unit: Seconds
+        description: "The number of seconds for AWS Elemental MediaConvert to complete transcoding."
+  - name: Operation
+    properties:
+      namespace: AWS/MediaConvert
+      dimensions: [ Operation ]
+    metrics:
+      - provider_name: Errors
+        unit: Count

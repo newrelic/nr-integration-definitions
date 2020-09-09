@@ -1,0 +1,204 @@
+provider: azure
+service: eventHub
+display_name: Event Hub
+entities:
+- name: Namespace
+  properties:
+    resource_type: Microsoft.EventHub/namespaces
+  metrics:
+  - provider_name: SuccessfulRequests
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+#      - OperationResult
+    description: Successful Requests for Microsoft.EventHub.
+  - provider_name: ServerErrors
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+#      - OperationResult
+    description: Server Errors for Microsoft.EventHub.
+  - provider_name: UserErrors
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+#      - OperationResult
+    description: User Errors for Microsoft.EventHub.
+  - provider_name: QuotaExceededErrors
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+#      - OperationResult
+    description: Quota Exceeded Errors for Microsoft.EventHub.
+  - provider_name: ThrottledRequests
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+#      - OperationResult
+    description: Throttled Requests for Microsoft.EventHub.
+  - provider_name: IncomingRequests
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Incoming Requests for Microsoft.EventHub.
+  - provider_name: IncomingMessages
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Incoming Messages for Microsoft.EventHub.
+  - provider_name: OutgoingMessages
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Outgoing Messages for Microsoft.EventHub.
+  - provider_name: IncomingBytes
+    nrdb_name: incoming
+    unit: Bytes
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Incoming Bytes for Microsoft.EventHub.
+  - provider_name: OutgoingBytes
+    nrdb_name: outgoing
+    unit: Bytes
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Outgoing Bytes for Microsoft.EventHub.
+  - provider_name: ActiveConnections
+    unit: Count
+    description: Total Active Connections for Microsoft.EventHub.
+  - provider_name: ConnectionsOpened
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Connections Opened for Microsoft.EventHub.
+  - provider_name: ConnectionsClosed
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Connections Closed for Microsoft.EventHub.
+  - provider_name: CaptureBacklog
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Capture Backlog for Microsoft.EventHub.
+  - provider_name: CapturedMessages
+    unit: Count
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Captured Messages for Microsoft.EventHub.
+  - provider_name: CapturedBytes
+    nrdb_name: captured
+    unit: Bytes
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Captured Bytes for Microsoft.EventHub.
+  - provider_name: Size
+    unit: Bytes
+#    properties:
+#      dimensions:
+#      - EntityName
+    description: Size of an EventHub in Bytes.
+- name: Cluster
+  properties:
+    resource_type: Microsoft.EventHub/clusters
+  metrics:
+  - provider_name: SuccessfulRequests
+    unit: Count
+#    properties:
+#      dimensions:
+#      - OperationResult
+    description: Successful Requests for Microsoft.EventHub.
+  - provider_name: ServerErrors
+    unit: Count
+#    properties:
+#      dimensions:
+#      - OperationResult
+    description: Server Errors for Microsoft.EventHub.
+  - provider_name: UserErrors
+    unit: Count
+#    properties:
+#      dimensions:
+#      - OperationResult
+    description: User Errors for Microsoft.EventHub.
+  - provider_name: QuotaExceededErrors
+    unit: Count
+#    properties:
+#      dimensions:
+#      - OperationResult
+    description: Quota Exceeded Errors for Microsoft.EventHub.
+  - provider_name: ThrottledRequests
+    unit: Count
+#    properties:
+#      dimensions:
+#      - OperationResult
+    description: Throttled Requests for Microsoft.EventHub.
+  - provider_name: IncomingRequests
+    unit: Count
+    description: Incoming Requests for Microsoft.EventHub.
+  - provider_name: IncomingMessages
+    unit: Count
+    description: Incoming Messages for Microsoft.EventHub.
+  - provider_name: OutgoingMessages
+    unit: Count
+    description: Outgoing Messages for Microsoft.EventHub.
+  - provider_name: IncomingBytes
+    nrdb_name: incoming
+    unit: Bytes
+    description: Incoming Bytes for Microsoft.EventHub.
+  - provider_name: OutgoingBytes
+    nrdb_name: outgoing
+    unit: Bytes
+    description: Outgoing Bytes for Microsoft.EventHub.
+  - provider_name: ActiveConnections
+    unit: Count
+    description: Total Active Connections for Microsoft.EventHub.
+  - provider_name: ConnectionsOpened
+    unit: Count
+    description: Connections Opened for Microsoft.EventHub.
+  - provider_name: ConnectionsClosed
+    unit: Count
+    description: Connections Closed for Microsoft.EventHub.
+  - provider_name: CaptureBacklog
+    unit: Count
+    description: Capture Backlog for Microsoft.EventHub.
+  - provider_name: CapturedMessages
+    unit: Count
+    description: Captured Messages for Microsoft.EventHub.
+  - provider_name: CapturedBytes
+    nrdb_name: captured
+    unit: Bytes
+    description: Captured Bytes for Microsoft.EventHub.
+  - provider_name: CPU
+    nrdb_name: cpu
+    unit: Percent
+#    properties:
+#      dimensions:
+#      - Role
+    description: CPU utilization for the Event Hub Cluster as a percentage
+  - provider_name: AvailableMemory
+    unit: Percent
+#    properties:
+#      dimensions:
+#      - Role
+    description: Available memory for the Event Hub Cluster as a percentage of total memory.
+  - provider_name: Size
+    unit: Bytes
+#    properties:
+#      dimensions:
+#      - Role
+    description: Size of an EventHub in Bytes.

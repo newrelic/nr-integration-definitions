@@ -1,0 +1,284 @@
+provider: aws
+service: docDb
+display_name: DocumentDB
+properties:
+  resource_tagging_api_service_name: rds
+entities:
+  - name: Cluster
+    delay: 120
+    properties:
+      arn_id: cluster:{DBClusterIdentifier}
+      namespace: AWS/DocDB
+      dimensions: [ DBClusterIdentifier ]
+      dimensions_name_to_key:
+        DBClusterIdentifier: dbClusterIdentifier
+    metrics:
+      - provider_name: CPUUtilization
+        unit: Percent
+        nrdb_name: cpuUtilization
+        description: "The percentage of CPU used by an instance."
+      - provider_name: DatabaseConnections
+        unit: Count
+        description: "The number of connections to an instance."
+      - provider_name: FreeLocalStorage
+        unit: Bytes
+        description: "This metric reports the amount of storage available to each instance for temporary tables and logs. This value depends on the instance class. You can increase the amount of free storage space for an instance by choosing a larger instance class for your instance."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: WriteIOPS
+        unit: CountPerSecond
+        description: "The average number of disk write I/O operations per second. Read and write IOPS are reported separately, on 1-minute intervals."
+      - provider_name: ReadIOPS
+        unit: CountPerSecond
+        description: "The average number of disk read I/O operations per second. Amazon DocumentDB reports read and write IOPS separately, and on one-minute intervals."
+      - provider_name: WriteLatency
+        unit: Seconds
+        description: "The average amount of time, in milliseconds, taken per disk I/O operation."
+      - provider_name: ReadLatency
+        unit: Seconds
+        description: "The average amount of time taken per disk I/O operation."
+      - provider_name: WriteThroughput
+        unit: Bytes
+        description: "The average number of bytes written to disk per second."
+      - provider_name: ReadThroughput
+        unit: Bytes
+        description: "The average number of bytes read from disk per second."
+      - provider_name: NetworkThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, both received from and transmitted to clients by each instance in the Amazon DocumentDB cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, sent to clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: NetworkReceiveThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, received from clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time, in seconds, that the instance has been running."
+      - provider_name: SwapUsage
+        unit: Bytes
+        description: "The amount of swap space used on the instance."
+      - provider_name: DiskQueueDepth
+        unit: Count
+        description: "The number of outstanding read/write requests waiting to access the disk."
+      - provider_name: BufferCacheHitRatio
+        unit: Percent
+        description: "The percentage of requests that are served by the buffer cache."
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage in GiB used to support the point-in-time restore feature within the Amazon DocumentDB's retention window. Included in the total reported by the TotalBackupStorageBilled metric. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage in GiB consumed by all snapshots for a given Amazon DocumentDB cluster outside its backup retention window. Included in the total reported by the TotalBackupStorageBilled metric. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage in GiB for which you are billed for a given Amazon DocumentDB cluster. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: DBInstanceReplicaLag
+        nrdb_name: dbInstanceReplicaLag
+        unit: Milliseconds
+        description: "The amount of lag, in milliseconds, when replicating updates from the primary instance to a replica instance."
+      - provider_name: DBClusterReplicaLagMaximum
+        nrdb_name: dbClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag, in milliseconds, between the primary instance and each Amazon DocumentDB instance in the cluster."
+      - provider_name: DBClusterReplicaLagMinimum
+        nrdb_name: dbClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag, in milliseconds, between the primary instance and each replica instance in the cluster."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage, in bytes, used by your cluster, in bytes. This value affects the cost of the cluster (for pricing information, see the Amazon DocumentDB product page)."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the cluster, and then reported at 5-minute intervals. The value is calculated by taking the value of the read operations metric over a 5-minute period. You can determine the amount of billed read operations per second by taking the value of the billed read operations metric and dividing by 300 seconds. For example, if the billed read operations returns 13,686, then the billed read operations per second is 45 (13,686 / 300 = 45.62). You accrue billed read operations for queries that request database pages that are not present in the buffer cache and therefore must be loaded from storage. You might see spikes in billed read operations as query results are read from storage and then loaded into the buffer cache."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of billed write I/O operations from a cluster volume, reported at 5-minute intervals. Billed write operations are calculated at the cluster volume level, aggregated from all instances in the cluster, and then reported at 5-minute intervals. The value is calculated by taking the value of the write operations metric over a 5-minute period. You can determine the amount of billed write operations per second by taking the value of the billed write operations metric and dividing by 300 seconds. For example, if the billed write operations returns 13,686, then the billed write operations per second is 45 (13,686 / 300 = 45.62)."
+
+
+  - name: ClusterByRole
+    delay: 120
+    properties:
+      arn_id: cluster:{DBClusterIdentifier}
+      namespace: AWS/DocDB
+      dimensions: [ DBClusterIdentifier, Role ]
+      dimensions_name_to_key:
+        DBClusterIdentifier: dbClusterIdentifier
+        Role: role
+    metrics:
+      - provider_name: CPUUtilization
+        unit: Percent
+        nrdb_name: cpuUtilization
+        description: "The percentage of CPU used by an instance."
+      - provider_name: DatabaseConnections
+        unit: Count
+        description: "The number of connections to an instance."
+      - provider_name: FreeLocalStorage
+        unit: Bytes
+        description: "This metric reports the amount of storage available to each instance for temporary tables and logs. This value depends on the instance class. You can increase the amount of free storage space for an instance by choosing a larger instance class for your instance."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: WriteIOPS
+        unit: CountPerSecond
+        description: "The average number of disk write I/O operations per second. Read and write IOPS are reported separately, on 1-minute intervals."
+      - provider_name: ReadIOPS
+        unit: CountPerSecond
+        description: "The average number of disk read I/O operations per second. Amazon DocumentDB reports read and write IOPS separately, and on one-minute intervals."
+      - provider_name: WriteLatency
+        unit: Seconds
+        description: "The average amount of time, in milliseconds, taken per disk I/O operation."
+      - provider_name: ReadLatency
+        unit: Seconds
+        description: "The average amount of time taken per disk I/O operation."
+      - provider_name: WriteThroughput
+        unit: Bytes
+        description: "The average number of bytes written to disk per second."
+      - provider_name: ReadThroughput
+        unit: Bytes
+        description: "The average number of bytes read from disk per second."
+      - provider_name: NetworkThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, both received from and transmitted to clients by each instance in the Amazon DocumentDB cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, sent to clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: NetworkReceiveThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, received from clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time, in seconds, that the instance has been running."
+      - provider_name: SwapUsage
+        unit: Bytes
+        description: "The amount of swap space used on the instance."
+      - provider_name: DiskQueueDepth
+        unit: Count
+        description: "The number of outstanding read/write requests waiting to access the disk."
+      - provider_name: BufferCacheHitRatio
+        unit: Percent
+        description: "The percentage of requests that are served by the buffer cache."
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage in GiB used to support the point-in-time restore feature within the Amazon DocumentDB's retention window. Included in the total reported by the TotalBackupStorageBilled metric. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage in GiB consumed by all snapshots for a given Amazon DocumentDB cluster outside its backup retention window. Included in the total reported by the TotalBackupStorageBilled metric. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage in GiB for which you are billed for a given Amazon DocumentDB cluster. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: DBInstanceReplicaLag
+        nrdb_name: dbInstanceReplicaLag
+        unit: Milliseconds
+        description: "The amount of lag, in milliseconds, when replicating updates from the primary instance to a replica instance."
+      - provider_name: DBClusterReplicaLagMaximum
+        nrdb_name: dbClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag, in milliseconds, between the primary instance and each Amazon DocumentDB instance in the cluster."
+      - provider_name: DBClusterReplicaLagMinimum
+        nrdb_name: dbClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag, in milliseconds, between the primary instance and each replica instance in the cluster."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage, in bytes, used by your cluster, in bytes. This value affects the cost of the cluster (for pricing information, see the Amazon DocumentDB product page)."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the cluster, and then reported at 5-minute intervals. The value is calculated by taking the value of the read operations metric over a 5-minute period. You can determine the amount of billed read operations per second by taking the value of the billed read operations metric and dividing by 300 seconds. For example, if the billed read operations returns 13,686, then the billed read operations per second is 45 (13,686 / 300 = 45.62). You accrue billed read operations for queries that request database pages that are not present in the buffer cache and therefore must be loaded from storage. You might see spikes in billed read operations as query results are read from storage and then loaded into the buffer cache."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of billed write I/O operations from a cluster volume, reported at 5-minute intervals. Billed write operations are calculated at the cluster volume level, aggregated from all instances in the cluster, and then reported at 5-minute intervals. The value is calculated by taking the value of the write operations metric over a 5-minute period. You can determine the amount of billed write operations per second by taking the value of the billed write operations metric and dividing by 300 seconds. For example, if the billed write operations returns 13,686, then the billed write operations per second is 45 (13,686 / 300 = 45.62)."
+
+
+  - name: Instance
+    delay: 120
+    properties:
+      arn_id: db:{DBInstanceIdentifier}
+      namespace: AWS/DocDB
+      dimensions: [ DBInstanceIdentifier ]
+      dimensions_name_to_key:
+        DBInstanceIdentifier: dbInstanceIdentifier
+    metrics:
+      - provider_name: CPUUtilization
+        unit: Percent
+        nrdb_name: cpuUtilization
+        description: "The percentage of CPU used by an instance."
+      - provider_name: DatabaseConnections
+        unit: Count
+        description: "The number of connections to an instance."
+      - provider_name: FreeLocalStorage
+        unit: Bytes
+        description: "This metric reports the amount of storage available to each instance for temporary tables and logs. This value depends on the instance class. You can increase the amount of free storage space for an instance by choosing a larger instance class for your instance."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: WriteIOPS
+        unit: CountPerSecond
+        description: "The average number of disk write I/O operations per second. Read and write IOPS are reported separately, on 1-minute intervals."
+      - provider_name: ReadIOPS
+        unit: CountPerSecond
+        description: "The average number of disk read I/O operations per second. Amazon DocumentDB reports read and write IOPS separately, and on one-minute intervals."
+      - provider_name: WriteLatency
+        unit: Seconds
+        description: "The average amount of time, in milliseconds, taken per disk I/O operation."
+      - provider_name: ReadLatency
+        unit: Seconds
+        description: "The average amount of time taken per disk I/O operation."
+      - provider_name: WriteThroughput
+        unit: Bytes
+        description: "The average number of bytes written to disk per second."
+      - provider_name: ReadThroughput
+        unit: Bytes
+        description: "The average number of bytes read from disk per second."
+      - provider_name: NetworkThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, both received from and transmitted to clients by each instance in the Amazon DocumentDB cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, sent to clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: NetworkReceiveThroughput
+        unit: Bytes
+        description: "The amount of network throughput, in bytes per second, received from clients by each instance in the cluster. This throughput doesn't include network traffic between instances in the cluster and the cluster volume."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time, in seconds, that the instance has been running."
+      - provider_name: SwapUsage
+        unit: Bytes
+        description: "The amount of swap space used on the instance."
+      - provider_name: DiskQueueDepth
+        unit: Count
+        description: "The number of outstanding read/write requests waiting to access the disk."
+      - provider_name: BufferCacheHitRatio
+        unit: Percent
+        description: "The percentage of requests that are served by the buffer cache."
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage in GiB used to support the point-in-time restore feature within the Amazon DocumentDB's retention window. Included in the total reported by the TotalBackupStorageBilled metric. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage in GiB consumed by all snapshots for a given Amazon DocumentDB cluster outside its backup retention window. Included in the total reported by the TotalBackupStorageBilled metric. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage in GiB for which you are billed for a given Amazon DocumentDB cluster. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics. Computed separately for each Amazon DocumentDB cluster."
+      - provider_name: DBInstanceReplicaLag
+        nrdb_name: dbInstanceReplicaLag
+        unit: Milliseconds
+        description: "The amount of lag, in milliseconds, when replicating updates from the primary instance to a replica instance."
+      - provider_name: DBClusterReplicaLagMaximum
+        nrdb_name: dbClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag, in milliseconds, between the primary instance and each Amazon DocumentDB instance in the cluster."
+      - provider_name: DBClusterReplicaLagMinimum
+        nrdb_name: dbClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag, in milliseconds, between the primary instance and each replica instance in the cluster."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage, in bytes, used by your cluster, in bytes. This value affects the cost of the cluster (for pricing information, see the Amazon DocumentDB product page)."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the cluster, and then reported at 5-minute intervals. The value is calculated by taking the value of the read operations metric over a 5-minute period. You can determine the amount of billed read operations per second by taking the value of the billed read operations metric and dividing by 300 seconds. For example, if the billed read operations returns 13,686, then the billed read operations per second is 45 (13,686 / 300 = 45.62). You accrue billed read operations for queries that request database pages that are not present in the buffer cache and therefore must be loaded from storage. You might see spikes in billed read operations as query results are read from storage and then loaded into the buffer cache."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of billed write I/O operations from a cluster volume, reported at 5-minute intervals. Billed write operations are calculated at the cluster volume level, aggregated from all instances in the cluster, and then reported at 5-minute intervals. The value is calculated by taking the value of the write operations metric over a 5-minute period. You can determine the amount of billed write operations per second by taking the value of the billed write operations metric and dividing by 300 seconds. For example, if the billed write operations returns 13,686, then the billed write operations per second is 45 (13,686 / 300 = 45.62)."

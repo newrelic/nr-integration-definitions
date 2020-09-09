@@ -1,0 +1,361 @@
+provider: aws
+service: neptune
+display_name: Neptune
+properties:
+  resource_tagging_api_service_name: rds
+entities:
+  - name: Instance
+    delay: 120
+    properties:
+      arn_id: db:{DBInstanceIdentifier}
+      namespace: AWS/Neptune
+      dimensions: [DBInstanceIdentifier]
+      dimensions_name_to_key:
+        DBInstanceIdentifier: dbInstanceIdentifier
+    metrics:
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage, in bytes, used to support from the Neptune DB cluster's backup retention window. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: ClusterReplicaLag
+        unit: Milliseconds
+        description: "For a read replica, the amount of lag when replicating updates from the primary instance, in milliseconds."
+      - provider_name: ClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: ClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: CPUUtilization
+        nrdb_name: cpuUtilization
+        unit: Percent
+        description: "The percentage of CPU utilization."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time that the instance has been running, in seconds."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: GremlinRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of requests per second to the Gremlin engine."
+      - provider_name: GremlinWebSocketOpenConnections
+        unit: Count
+        description: "The number of open WebSocket connections to Neptune."
+      - provider_name: LoaderRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of loader requests per second."
+      - provider_name: MainRequestQueuePendingRequests
+        unit: Count
+        description: "The number of requests waiting in the input queue pending execution. Neptune starts throttling requests when they exceed the maximum queue capacity."
+      - provider_name: NetworkReceiveThroughput
+        unit: BytesPerSecond
+        description: "The incoming (Receive) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NetworkThroughput
+        unit: BytesPerSecond
+        description: "The amount of network throughput both received from and transmitted to clients by each instance in the Neptune DB cluster, in bytes per second. This throughput doesn't include network traffic between instances in the DB cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: BytesPerSecond
+        description: "The outgoing (Transmit) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NumTxCommitted
+        unit: Count
+        description: "The number of transactions successfully committed per second."
+      - provider_name: NumTxOpened
+        unit: Count
+        description: "The number of transactions opened on the server per second."
+      - provider_name: NumTxRolledBack
+        unit: Count
+        description: "The number of transactions per second rolled back on the server because of errors."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage consumed by all snapshots for a Neptune DB cluster outside its backup retention window, in bytes. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: SparqlRequestsPerSec
+        unit: CountPerSecond
+        description: "The number of requests per second to the SPARQL engine."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage for which you are billed for a given Neptune DB cluster, in bytes. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics."
+      - provider_name: TotalRequestsPerSec
+        unit: CountPerSecond
+        description: "The total number of requests per second to the server from all sources."
+      - provider_name: TotalClientErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out because of client-side issues."
+      - provider_name: TotalServerErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out on the server because of internal failures."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage used by your Neptune DB instance, in bytes. This value affects the cost of the Neptune DB cluster."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the Neptune DB cluster, and then reported at 5-minute intervals."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of write disk I/O operations to the cluster volume, reported at 5-minute intervals."
+
+  - name: Cluster
+    delay: 120
+    properties:
+      arn_id: cluster:{DBClusterIdentifier}
+      namespace: AWS/Neptune
+      dimensions: [DBClusterIdentifier]
+      dimensions_name_to_key:
+        DBClusterIdentifier: dbClusterIdentifier
+    metrics:
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage, in bytes, used to support from the Neptune DB cluster's backup retention window. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: ClusterReplicaLag
+        unit: Milliseconds
+        description: "For a read replica, the amount of lag when replicating updates from the primary instance, in milliseconds."
+      - provider_name: ClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: ClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: CPUUtilization
+        nrdb_name: cpuUtilization
+        unit: Percent
+        description: "The percentage of CPU utilization."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time that the instance has been running, in seconds."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: GremlinRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of requests per second to the Gremlin engine."
+      - provider_name: GremlinWebSocketOpenConnections
+        unit: Count
+        description: "The number of open WebSocket connections to Neptune."
+      - provider_name: LoaderRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of loader requests per second."
+      - provider_name: MainRequestQueuePendingRequests
+        unit: Count
+        description: "The number of requests waiting in the input queue pending execution. Neptune starts throttling requests when they exceed the maximum queue capacity."
+      - provider_name: NetworkReceiveThroughput
+        unit: BytesPerSecond
+        description: "The incoming (Receive) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NetworkThroughput
+        unit: BytesPerSecond
+        description: "The amount of network throughput both received from and transmitted to clients by each instance in the Neptune DB cluster, in bytes per second. This throughput doesn't include network traffic between instances in the DB cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: BytesPerSecond
+        description: "The outgoing (Transmit) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NumTxCommitted
+        unit: Count
+        description: "The number of transactions successfully committed per second."
+      - provider_name: NumTxOpened
+        unit: Count
+        description: "The number of transactions opened on the server per second."
+      - provider_name: NumTxRolledBack
+        unit: Count
+        description: "The number of transactions per second rolled back on the server because of errors."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage consumed by all snapshots for a Neptune DB cluster outside its backup retention window, in bytes. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: SparqlRequestsPerSec
+        unit: CountPerSecond
+        description: "The number of requests per second to the SPARQL engine."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage for which you are billed for a given Neptune DB cluster, in bytes. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics."
+      - provider_name: TotalRequestsPerSec
+        unit: CountPerSecond
+        description: "The total number of requests per second to the server from all sources."
+      - provider_name: TotalClientErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out because of client-side issues."
+      - provider_name: TotalServerErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out on the server because of internal failures."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage used by your Neptune DB instance, in bytes. This value affects the cost of the Neptune DB cluster."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the Neptune DB cluster, and then reported at 5-minute intervals."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of write disk I/O operations to the cluster volume, reported at 5-minute intervals."
+
+  - name: ClusterByRole
+    delay: 120
+    properties:
+      arn_id: cluster:{DBClusterIdentifier}
+      namespace: AWS/Neptune
+      dimensions: [Role,DBClusterIdentifier]
+      dimensions_name_to_key:
+        DBClusterIdentifier: dbClusterIdentifier
+        Role: role
+    metrics:
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage, in bytes, used to support from the Neptune DB cluster's backup retention window. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: ClusterReplicaLag
+        unit: Milliseconds
+        description: "For a read replica, the amount of lag when replicating updates from the primary instance, in milliseconds."
+      - provider_name: ClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: ClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: CPUUtilization
+        nrdb_name: cpuUtilization
+        unit: Percent
+        description: "The percentage of CPU utilization."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time that the instance has been running, in seconds."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: GremlinRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of requests per second to the Gremlin engine."
+      - provider_name: GremlinWebSocketOpenConnections
+        unit: Count
+        description: "The number of open WebSocket connections to Neptune."
+      - provider_name: LoaderRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of loader requests per second."
+      - provider_name: MainRequestQueuePendingRequests
+        unit: Count
+        description: "The number of requests waiting in the input queue pending execution. Neptune starts throttling requests when they exceed the maximum queue capacity."
+      - provider_name: NetworkReceiveThroughput
+        unit: BytesPerSecond
+        description: "The incoming (Receive) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NetworkThroughput
+        unit: BytesPerSecond
+        description: "The amount of network throughput both received from and transmitted to clients by each instance in the Neptune DB cluster, in bytes per second. This throughput doesn't include network traffic between instances in the DB cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: BytesPerSecond
+        description: "The outgoing (Transmit) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NumTxCommitted
+        unit: Count
+        description: "The number of transactions successfully committed per second."
+      - provider_name: NumTxOpened
+        unit: Count
+        description: "The number of transactions opened on the server per second."
+      - provider_name: NumTxRolledBack
+        unit: Count
+        description: "The number of transactions per second rolled back on the server because of errors."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage consumed by all snapshots for a Neptune DB cluster outside its backup retention window, in bytes. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: SparqlRequestsPerSec
+        unit: CountPerSecond
+        description: "The number of requests per second to the SPARQL engine."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage for which you are billed for a given Neptune DB cluster, in bytes. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics."
+      - provider_name: TotalRequestsPerSec
+        unit: CountPerSecond
+        description: "The total number of requests per second to the server from all sources."
+      - provider_name: TotalClientErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out because of client-side issues."
+      - provider_name: TotalServerErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out on the server because of internal failures."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage used by your Neptune DB instance, in bytes. This value affects the cost of the Neptune DB cluster."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the Neptune DB cluster, and then reported at 5-minute intervals."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of write disk I/O operations to the cluster volume, reported at 5-minute intervals."
+
+  - name: DatabaseClass
+    delay: 120
+    properties:
+      namespace: AWS/Neptune
+      dimensions: [DatabaseClass]
+      dimensions_name_to_key:
+        DatabaseClass: databaseClass
+    metrics:
+      - provider_name: BackupRetentionPeriodStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage, in bytes, used to support from the Neptune DB cluster's backup retention window. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: ClusterReplicaLag
+        unit: Milliseconds
+        description: "For a read replica, the amount of lag when replicating updates from the primary instance, in milliseconds."
+      - provider_name: ClusterReplicaLagMaximum
+        unit: Milliseconds
+        description: "The maximum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: ClusterReplicaLagMinimum
+        unit: Milliseconds
+        description: "The minimum amount of lag between the primary instance and each Neptune DB instance in the DB cluster, in milliseconds."
+      - provider_name: CPUUtilization
+        nrdb_name: cpuUtilization
+        unit: Percent
+        description: "The percentage of CPU utilization."
+      - provider_name: EngineUptime
+        unit: Seconds
+        description: "The amount of time that the instance has been running, in seconds."
+      - provider_name: FreeableMemory
+        unit: Bytes
+        description: "The amount of available random access memory, in bytes."
+      - provider_name: GremlinRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of requests per second to the Gremlin engine."
+      - provider_name: GremlinWebSocketOpenConnections
+        unit: Count
+        description: "The number of open WebSocket connections to Neptune."
+      - provider_name: LoaderRequestsPerSec
+        unit: CountPerSecond
+        description: "Number of loader requests per second."
+      - provider_name: MainRequestQueuePendingRequests
+        unit: Count
+        description: "The number of requests waiting in the input queue pending execution. Neptune starts throttling requests when they exceed the maximum queue capacity."
+      - provider_name: NetworkReceiveThroughput
+        unit: BytesPerSecond
+        description: "The incoming (Receive) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NetworkThroughput
+        unit: BytesPerSecond
+        description: "The amount of network throughput both received from and transmitted to clients by each instance in the Neptune DB cluster, in bytes per second. This throughput doesn't include network traffic between instances in the DB cluster and the cluster volume."
+      - provider_name: NetworkTransmitThroughput
+        unit: BytesPerSecond
+        description: "The outgoing (Transmit) network traffic on the DB instance, including both customer database traffic and Neptune traffic used for monitoring and replication, in bytes/second."
+      - provider_name: NumTxCommitted
+        unit: Count
+        description: "The number of transactions successfully committed per second."
+      - provider_name: NumTxOpened
+        unit: Count
+        description: "The number of transactions opened on the server per second."
+      - provider_name: NumTxRolledBack
+        unit: Count
+        description: "The number of transactions per second rolled back on the server because of errors."
+      - provider_name: SnapshotStorageUsed
+        unit: Bytes
+        description: "The total amount of backup storage consumed by all snapshots for a Neptune DB cluster outside its backup retention window, in bytes. Included in the total reported by the TotalBackupStorageBilled metric."
+      - provider_name: SparqlRequestsPerSec
+        unit: CountPerSecond
+        description: "The number of requests per second to the SPARQL engine."
+      - provider_name: TotalBackupStorageBilled
+        unit: Bytes
+        description: "The total amount of backup storage for which you are billed for a given Neptune DB cluster, in bytes. Includes the backup storage measured by the BackupRetentionPeriodStorageUsed and SnapshotStorageUsed metrics."
+      - provider_name: TotalRequestsPerSec
+        unit: CountPerSecond
+        description: "The total number of requests per second to the server from all sources."
+      - provider_name: TotalClientErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out because of client-side issues."
+      - provider_name: TotalServerErrorsPerSec
+        unit: CountPerSecond
+        description: "The total number per second of requests that errored out on the server because of internal failures."
+      - provider_name: VolumeBytesUsed
+        unit: Bytes
+        description: "The amount of storage used by your Neptune DB instance, in bytes. This value affects the cost of the Neptune DB cluster."
+      - provider_name: VolumeReadIOPs
+        unit: Count
+        description: "The average number of billed read I/O operations from a cluster volume, reported at 5-minute intervals. Billed read operations are calculated at the cluster volume level, aggregated from all instances in the Neptune DB cluster, and then reported at 5-minute intervals."
+      - provider_name: VolumeWriteIOPs
+        unit: Count
+        description: "The average number of write disk I/O operations to the cluster volume, reported at 5-minute intervals."

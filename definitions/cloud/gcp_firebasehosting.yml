@@ -1,0 +1,32 @@
+provider: gcp
+service: firebasehosting
+display_name: Firebase Hosting
+properties:
+  resource_uri: firebasehosting.googleapis.com
+entities:
+- name: Domain
+  properties:
+    labels:
+    - project_id
+    - domain_name
+    - site_name
+  metrics:
+  - provider_name: network/monthly_sent
+    unit: Bytes
+    description: The total outgoing bytes sent aggregated and reset monthly.
+
+  - provider_name: network/monthly_sent_limit
+    unit: Bytes
+    description: The monthly network limit for Firebase Hosting.
+
+  - provider_name: network/sent_bytes_count
+    unit: Bytes
+    description: The outgoing bandwidth usage for Firebase Hosting.
+
+  - provider_name: storage/limit
+    unit: Bytes
+    description: The storage limit for Firebase Hosting.
+
+  - provider_name: storage/total_bytes
+    unit: Bytes
+    description: The size of the Firebase Hosting storage.

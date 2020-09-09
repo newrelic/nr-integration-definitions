@@ -1,0 +1,148 @@
+provider: azure
+service: expressRoute
+display_name: Express Route
+entities:
+  - name: Port
+    properties:
+      resource_type: Microsoft.Network/expressRoutePorts
+    metrics:
+      - provider_name: RxLightLevel
+        unit: Count
+#         properties:
+#           dimensions:
+#             - Link
+#             - Lane
+        description: Rx Light level in dBm
+      - provider_name: TxLightLevel
+        unit: Count
+#         properties:
+#           dimensions:
+#             - Link
+#             - Lane
+        description: Tx light level in dBm
+      - provider_name: AdminState
+        unit: Count
+#         properties:
+#           dimensions:
+#             - Link
+        description: Admin state of the port
+      - provider_name: LineProtocol
+        unit: Count
+#         properties:
+#           dimensions:
+#             - Link
+        description: Line protocol status of the port
+      - provider_name: PortBitsInPerSecond
+        nrdb_name: portBitsInPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - Link
+        description: Bits ingressing Azure per second
+      - provider_name: PortBitsOutPerSecond
+        nrdb_name: portBitsOutPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - Link
+        description: Bits egressing Azure per second
+
+  - name: Circuit
+    properties:
+      resource_type: Microsoft.Network/expressRouteCircuits
+    metrics:
+      - provider_name: BitsInPerSecond
+        nrdb_name: bitsInPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - PeeringType
+        description: Bits ingressing Azure per second
+      - provider_name: BitsOutPerSecond
+        nrdb_name: bitsOutPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - PeeringType
+        description: Bits egressing Azure per second
+      - provider_name: GlobalReachBitsInPerSecond
+        nrdb_name: globalReachBitsInPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - PeeredCircuitSKey
+        description: Bits ingressing Azure per second
+      - provider_name: GlobalReachBitsOutPerSecond
+        nrdb_name: globalReachBitsOutPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - PeeredCircuitSKey
+        description: Bits egressing Azure per second
+      - provider_name: BgpAvailability
+        unit: Percent
+#         properties:
+#           dimensions:
+#             - PeeringType
+#             - Peer
+        description: BGP Availability from MSEE towards all peers.
+      - provider_name: ArpAvailability
+        unit: Percent
+#         properties:
+#           dimensions:
+#             - PeeringType
+#             - Peer
+        description: ARP Availability from MSEE towards all peers.
+      - provider_name: QosDropBitsInPerSecond
+        nrdb_name: qosDropBitsInPerSecond
+        unit: CountPerSecond
+        description: Ingress bits of data dropped per second
+      - provider_name: QosDropBitsOutPerSecond
+        nrdb_name: qosDropBitsOutPerSecond
+        unit: CountPerSecond
+        description: Egress bits of data dropped per second
+
+  - name: Peering
+    properties:
+      resource_type: Microsoft.Network/expressRouteCircuits/peerings
+    metrics:
+      - provider_name: BitsInPerSecond
+        nrdb_name: bitsInPerSecond
+        unit: CountPerSecond
+        description: Bits ingressing Azure per second
+      - provider_name: BitsOutPerSecond
+        nrdb_name: bitsOutPerSecond
+        unit: CountPerSecond
+        description: Bits egressing Azure per second
+
+  - name: Connection
+    properties:
+      resource_type: Microsoft.Network/connections
+    metrics:
+      - provider_name: BitsInPerSecond
+        nrdb_name: bitsInPerSecond
+        unit: CountPerSecond
+        description: Bits ingressing Azure per second
+      - provider_name: BitsOutPerSecond
+        nrdb_name: bitsOutPerSecond
+        unit: CountPerSecond
+        description: Bits egressing Azure per second
+
+  - name: Gateway
+    properties:
+      resource_type: Microsoft.Network/expressRouteGateways
+    metrics:
+      - provider_name: ErGatewayConnectionBitsInPerSecond
+        nrdb_name: erGatewayConnectionBitsInPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - ConnectionName
+        description: Bits ingressing Azure per second
+      - provider_name: ErGatewayConnectionBitsOutPerSecond
+        nrdb_name: erGatewayConnectionBitsOutPerSecond
+        unit: CountPerSecond
+#         properties:
+#           dimensions:
+#             - ConnectionName
+        description: Bits egressing Azure per second
