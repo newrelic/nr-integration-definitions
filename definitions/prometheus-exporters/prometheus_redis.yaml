@@ -1,0 +1,334 @@
+service: redis
+display_name: Redis
+entities:
+- name: instance
+  metrics:
+  - provider_name: redis_active_defrag_running
+    description: active_defrag_running metric
+    type: gauge
+  - provider_name: redis_allocator_active_bytes
+    description: allocator_active_bytes metric
+    type: gauge
+  - provider_name: redis_allocator_allocated_bytes
+    description: allocator_allocated_bytes metric
+    type: gauge
+  - provider_name: redis_allocator_frag_bytes
+    description: allocator_frag_bytes metric
+    type: gauge
+  - provider_name: redis_allocator_frag_ratio
+    description: allocator_frag_ratio metric
+    type: gauge
+  - provider_name: redis_allocator_resident_bytes
+    description: allocator_resident_bytes metric
+    type: gauge
+  - provider_name: redis_allocator_rss_bytes
+    description: allocator_rss_bytes metric
+    type: gauge
+  - provider_name: redis_allocator_rss_ratio
+    description: allocator_rss_ratio metric
+    type: gauge
+  - provider_name: redis_aof_current_rewrite_duration_sec
+    description: aof_current_rewrite_duration_sec metric
+    type: gauge
+  - provider_name: redis_aof_enabled
+    description: aof_enabled metric
+    type: gauge
+  - provider_name: redis_aof_last_bgrewrite_status
+    description: aof_last_bgrewrite_status metric
+    type: gauge
+  - provider_name: redis_aof_last_cow_size_bytes
+    description: aof_last_cow_size_bytes metric
+    type: gauge
+  - provider_name: redis_aof_last_rewrite_duration_sec
+    description: aof_last_rewrite_duration_sec metric
+    type: gauge
+  - provider_name: redis_aof_last_write_status
+    description: aof_last_write_status metric
+    type: gauge
+  - provider_name: redis_aof_rewrite_in_progress
+    description: aof_rewrite_in_progress metric
+    type: gauge
+  - provider_name: redis_aof_rewrite_scheduled
+    description: aof_rewrite_scheduled metric
+    type: gauge
+  - provider_name: redis_blocked_clients
+    description: blocked_clients metric
+    type: gauge
+  - provider_name: redis_client_recent_max_input_buffer_bytes
+    description: client_recent_max_input_buffer_bytes metric
+    type: gauge
+  - provider_name: redis_client_recent_max_output_buffer_bytes
+    description: client_recent_max_output_buffer_bytes metric
+    type: gauge
+  - provider_name: redis_cluster_enabled
+    description: cluster_enabled metric
+    type: gauge
+  - provider_name: redis_commands_duration_seconds
+    description: Total amount of time in seconds spent per command
+    type: counter
+    labels:
+    - cmd
+  - provider_name: redis_commands_processed
+    description: commands_processed_total metric
+    type: counter
+  - provider_name: redis_commands
+    description: Total number of calls per command
+    type: counter
+    labels:
+    - cmd
+  - provider_name: redis_config_maxclients
+    description: config_maxclients metric
+    type: gauge
+  - provider_name: redis_config_maxmemory
+    description: config_maxmemory metric
+    type: gauge
+  - provider_name: redis_connected_clients
+    description: connected_clients metric
+    type: gauge
+  - provider_name: redis_connected_slaves
+    description: connected_slaves metric
+    type: gauge
+  - provider_name: redis_connections_received
+    description: connections_received_total metric
+    type: counter
+  - provider_name: redis_cpu_sys_children_seconds
+    description: cpu_sys_children_seconds_total metric
+    type: counter
+  - provider_name: redis_cpu_sys_seconds
+    description: cpu_sys_seconds_total metric
+    type: counter
+  - provider_name: redis_cpu_user_children_seconds
+    description: cpu_user_children_seconds_total metric
+    type: counter
+  - provider_name: redis_cpu_user_seconds
+    description: cpu_user_seconds_total metric
+    type: counter
+  - provider_name: redis_defrag_hits
+    description: defrag_hits metric
+    type: gauge
+  - provider_name: redis_defrag_key_hits
+    description: defrag_key_hits metric
+    type: gauge
+  - provider_name: redis_defrag_key_misses
+    description: defrag_key_misses metric
+    type: gauge
+  - provider_name: redis_defrag_misses
+    description: defrag_misses metric
+    type: gauge
+  - provider_name: redis_evicted_keys
+    description: evicted_keys_total metric
+    type: counter
+  - provider_name: redis_expired_keys
+    description: expired_keys_total metric
+    type: counter
+  - provider_name: redis_expired_time_cap_reached_total
+    description: expired_time_cap_reached_total metric
+    type: gauge
+  - provider_name: redis_instance_info
+    description: Information about the Redis instance
+    type: gauge
+    labels:
+    - maxmemory_policy
+    - os
+    - redis_build_id
+    - redis_mode
+    - redis_version
+    - role
+  - provider_name: redis_keyspace_hits
+    description: keyspace_hits_total metric
+    type: counter
+  - provider_name: redis_keyspace_misses
+    description: keyspace_misses_total metric
+    type: counter
+  - provider_name: redis_last_slow_execution_duration_seconds
+    description: The amount of time needed for last slow execution, in seconds
+    type: gauge
+  - provider_name: redis_latest_fork_seconds
+    description: latest_fork_seconds metric
+    type: gauge
+  - provider_name: redis_lazyfree_pending_objects
+    description: lazyfree_pending_objects metric
+    type: gauge
+  - provider_name: redis_loading_dump_file
+    description: loading_dump_file metric
+    type: gauge
+  - provider_name: redis_master_repl_offset
+    description: master_repl_offset metric
+    type: gauge
+  - provider_name: redis_mem_clients_normal
+    description: mem_clients_normal metric
+    type: gauge
+  - provider_name: redis_mem_clients_slaves
+    description: mem_clients_slaves metric
+    type: gauge
+  - provider_name: redis_mem_fragmentation_bytes
+    description: mem_fragmentation_bytes metric
+    type: gauge
+  - provider_name: redis_mem_fragmentation_ratio
+    description: mem_fragmentation_ratio metric
+    type: gauge
+  - provider_name: redis_mem_not_counted_for_eviction_bytes
+    description: mem_not_counted_for_eviction_bytes metric
+    type: gauge
+  - provider_name: redis_memory_max_bytes
+    description: memory_max_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_bytes
+    description: memory_used_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_dataset_bytes
+    description: memory_used_dataset_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_lua_bytes
+    description: memory_used_lua_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_overhead_bytes
+    description: memory_used_overhead_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_peak_bytes
+    description: memory_used_peak_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_rss_bytes
+    description: memory_used_rss_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_scripts_bytes
+    description: memory_used_scripts_bytes metric
+    type: gauge
+  - provider_name: redis_memory_used_startup_bytes
+    description: memory_used_startup_bytes metric
+    type: gauge
+  - provider_name: redis_migrate_cached_sockets_total
+    description: migrate_cached_sockets_total metric
+    type: gauge
+  - provider_name: redis_module_fork_in_progress
+    description: module_fork_in_progress metric
+    type: gauge
+  - provider_name: redis_module_fork_last_cow_size
+    description: module_fork_last_cow_size metric
+    type: gauge
+  - provider_name: redis_net_input_bytes
+    description: net_input_bytes_total metric
+    type: counter
+  - provider_name: redis_net_output_bytes
+    description: net_output_bytes_total metric
+    type: counter
+  - provider_name: redis_process_id
+    description: process_id metric
+    type: gauge
+  - provider_name: redis_pubsub_channels
+    description: pubsub_channels metric
+    type: gauge
+  - provider_name: redis_pubsub_patterns
+    description: pubsub_patterns metric
+    type: gauge
+  - provider_name: redis_rdb_bgsave_in_progress
+    description: rdb_bgsave_in_progress metric
+    type: gauge
+  - provider_name: redis_rdb_changes_since_last_save
+    description: rdb_changes_since_last_save metric
+    type: gauge
+  - provider_name: redis_rdb_current_bgsave_duration_sec
+    description: rdb_current_bgsave_duration_sec metric
+    type: gauge
+  - provider_name: redis_rdb_last_bgsave_duration_sec
+    description: rdb_last_bgsave_duration_sec metric
+    type: gauge
+  - provider_name: redis_rdb_last_bgsave_status
+    description: rdb_last_bgsave_status metric
+    type: gauge
+  - provider_name: redis_rdb_last_cow_size_bytes
+    description: rdb_last_cow_size_bytes metric
+    type: gauge
+  - provider_name: redis_rdb_last_save_timestamp_seconds
+    description: rdb_last_save_timestamp_seconds metric
+    type: gauge
+  - provider_name: redis_rejected_connections
+    description: rejected_connections_total metric
+    type: counter
+  - provider_name: redis_repl_backlog_first_byte_offset
+    description: repl_backlog_first_byte_offset metric
+    type: gauge
+  - provider_name: redis_repl_backlog_history_bytes
+    description: repl_backlog_history_bytes metric
+    type: gauge
+  - provider_name: redis_repl_backlog_is_active
+    description: repl_backlog_is_active metric
+    type: gauge
+  - provider_name: redis_replica_partial_resync_accepted
+    description: replica_partial_resync_accepted metric
+    type: gauge
+  - provider_name: redis_replica_partial_resync_denied
+    description: replica_partial_resync_denied metric
+    type: gauge
+  - provider_name: redis_replica_resyncs_full
+    description: replica_resyncs_full metric
+    type: gauge
+  - provider_name: redis_replication_backlog_bytes
+    description: replication_backlog_bytes metric
+    type: gauge
+  - provider_name: redis_second_repl_offset
+    description: second_repl_offset metric
+    type: gauge
+  - provider_name: redis_slave_expires_tracked_keys
+    description: slave_expires_tracked_keys metric
+    type: gauge
+  - provider_name: redis_slowlog_last_id
+    description: Last id of slowlog
+    type: gauge
+  - provider_name: redis_slowlog_length
+    description: Total slowlog
+    type: gauge
+  - provider_name: redis_start_time_seconds
+    description: Start time of the Redis instance since unix epoch in seconds.
+    type: gauge
+  - provider_name: redis_target_scrape_request_errors
+    description: Errors in requests to the exporter
+    type: counter
+  - provider_name: redis_tracking_clients
+    description: tracking_clients metric
+    type: gauge
+  - provider_name: redis_up
+    description: Information about the Redis instance
+    type: gauge
+  - provider_name: redis_uptime_in_seconds
+    description: uptime_in_seconds metric
+    type: gauge
+- name: db
+  metrics:
+  - provider_name: redis_db_keys
+    description: Total number of keys by DB
+    type: gauge
+    labels:
+    - db
+  - provider_name: redis_db_keys_expiring
+    description: Total number of expiring keys by DB
+    type: gauge
+    labels:
+    - db
+- name: exporter
+  metrics:
+  - provider_name: redis_exporter_build_info
+    description: redis exporter build_info
+    type: gauge
+    labels:
+    - build_date
+    - commit_sha
+    - golang_version
+    - version
+  - provider_name: redis_exporter_last_scrape_connect_time_seconds
+    description: exporter_last_scrape_connect_time_seconds metric
+    type: gauge
+  - provider_name: redis_exporter_last_scrape_duration_seconds
+    description: exporter_last_scrape_duration_seconds metric
+    type: gauge
+  - provider_name: redis_exporter_last_scrape_error
+    description: The last scrape error status.
+    type: gauge
+    labels:
+    - err
+  - provider_name: redis_exporter_scrape_duration_seconds
+    description: Durations of scrapes by the exporter
+    type: summary
+  - provider_name: redis_exporter_scrapes
+    description: Current total redis scrapes.
+    type: counter
