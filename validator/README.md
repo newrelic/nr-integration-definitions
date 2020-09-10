@@ -6,9 +6,9 @@ More information about integration definition files can be found in [definition 
 
 ## How validation occurs
 
-Validation of the definition files includes 2 steps:
+Validation of the definition files happens in two steps:
 
-- schema validation: checks for structural errors in the files like missing required properties or invalid values for some of the properties
+1. Schema validation: Checks for structural errors in the files, like missing required properties or invalid values for some of the properties.
 2. Linting: Checks duplication of values for entity and metric names (inside a single file).
 
 Validation runs automatically whenever there is a pull request.
@@ -24,7 +24,7 @@ You can run it using `npm`:
 1. Install [NodeJS](https://nodejs.org/en/).
 2. Optionally, install [nvm](https://github.com/nvm-sh/nvm).
 3. Clone this repo: `git clone https://github.com/newrelic/nr-integration-definitions`.
-- Run
+4. Run `npm --prefix validator install`.
 5. Run `npm --prefix validator check`.
 
 You can also run each of the validation tools independently:
@@ -37,7 +37,7 @@ npm  --prefix validator run lint
 If you do not want to install NodeJS, you can use the provided Dockerfile, `Dockerfile.validator`, to validate the definition files.
 
 1. Make sure you have `docker` installed (https://docs.docker.com/get-docker/).
-- Build the image:
+2. Build the image:
 
 ```sh
 docker build . -f Dockerfile.validator -t newrelic/definitions-validator
