@@ -8,7 +8,7 @@ Integration definition files are written in YAML with the following specificatio
 
 Prometheus integration definition files should have the following format:
 
-`prometheus_<EXPORTER_NAME>.yml`
+`prometheus_<SERVICE_NAME>.yml`
 
 For example:
 
@@ -25,7 +25,7 @@ display_name: string, required
 
 # Name of the default entity. If defined, metrics that match the service prefix but are not defined in any entity will be added to this entity.
 # The default entity needs to be defined in the entities list.
-default_entity: string, non-required
+default_entity: string, optional
 
 # List of entities you want to monitor. There may be just one entity, which could be the service itself,
 # for example the `Redis` service has just one `Instance`.
@@ -35,12 +35,12 @@ entities: # Non-empty list of entity definitions. Required.
     # First entity Name. Used to form the entity type prefixed by the service (for example, `RavendbDatabase`).
   - name: string, required 
     # List of properties 
-    properties: non-required
+    properties: optional
       # Array of metric labels that will be part of the entity name.
       # If a dimension has been specified for the entity, all metrics in the entity must contain these labels.
       # Values of the labels will be concatenated to the entity name using ':' following the order in the list.
       # Example: Given [dim1, dim2] the entity will concatenate 'dim1value:dim2value' to the name.
-      dimensions: list, non-required
+      dimensions: list, optional
     # List of metrics for this entity
     metrics: # Non-empty list of metric definitions. Required.
         # Name of the metric as is present in the exporter.
@@ -50,5 +50,5 @@ entities: # Non-empty list of entity definitions. Required.
         # Type of metric. In the exporter output, it appears commented using # TYPE.
         type: Counter | Gauge | Summary | Histogram # default?
         # list of labels that the metric has e.g. [label1, label2, label3]
-        labels: list, non-required
+        labels: list, optional
 ```
