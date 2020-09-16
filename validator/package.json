@@ -1,0 +1,16 @@
+{
+  "name": "infra-integration-specs",
+  "description": "Spec files for Infrastructure integrations",
+  "version": "1.0.0",
+  "scripts": {
+    "validate-schema": "pajv validate --errors=json -s schema-v1.json -d '../definitions/*/*'",
+    "lint": "node tools/linter.js",
+    "check": "npm run validate-schema && npm run lint"
+  },
+  "dependencies": {
+    "js-yaml": "^3.14.0",
+    "lodash": "^4.17.20",
+    "pajv": "^1.2.0",
+    "simple-spellchecker": "^1.0.0"
+  }
+}
