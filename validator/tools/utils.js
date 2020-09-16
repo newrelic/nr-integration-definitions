@@ -17,8 +17,9 @@ async function getFiles(dir) {
 module.exports = {
   getAllDefinitions: (func) => {
     getFiles(DEFINITIONS_DIR).then(files => files.map(file => {
-      yml = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
-      func(yml);
+      yaml.safeLoadAll(fs.readFileSync(file, 'utf8'), function (doc) {
+        func(doc);
+      });
     })).catch(err => console.log(err));
   },
   isLowerCamelCase: str => {
