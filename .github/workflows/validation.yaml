@@ -11,6 +11,6 @@ jobs:
           node-version: '14'
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm --prefix validator run install
+        run: npm --prefix validator install
       - name: Validate
         run: npm --prefix validator run check
