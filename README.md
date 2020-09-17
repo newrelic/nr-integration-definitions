@@ -2,7 +2,11 @@
 
 # New Relic integration definitions
 
-New Relic's integration definitions are (yaml) files that contain the required information to enable Cloud services  and Prometheus exporters no-code integrations in NR.
+New Relic's integration definitions are (yaml) files that contain the required information to enable Cloud services and Prometheus exporters no-code integrations in NR.
+
+## Definition files format
+
+See [format](https://github.com/newrelic/nr-integration-definitions/docs/format.md) documentation to get a full description of how the definition files are structured.
 
 ## Testing and Validation
 

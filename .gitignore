@@ -31,3 +31,5 @@ sync_prod.json
 **/__pycache__/
 ./nr1_templates/__pycache__/*
 definition/__pycache__
+node_modules
+.vscode
