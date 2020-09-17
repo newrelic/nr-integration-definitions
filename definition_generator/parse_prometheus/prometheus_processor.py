@@ -5,7 +5,7 @@ import requests
 
 from prometheus_client.parser import text_string_to_metric_families
 
-RESERVED_NAMESPACE = ["go", "process", "promhttp"]
+RESERVED_NAMESPACE = []
 logger = logging.getLogger()
 
 
@@ -22,19 +22,24 @@ def generate_metrics(prometheus_output_path, url_prometheus):
         metrics = file.read()
         file.close()
 
+
+
     output={}
     for family in text_string_to_metric_families(metrics):
-
         serviceName = family.name.split("_")[0]
         entityName = family.name.split("_")[1]
+        
+        logger.info(family)
 
         if serviceName in RESERVED_NAMESPACE:
             continue
 
         serviceObj = getServiceObj(output, serviceName)
         entityObj = getEntityObj(serviceObj, entityName)
-        metricObj = getMetricObj(family)
-        entityObj["metrics"].append(metricObj)
+        metricDict = getMetricDict(family)
+        for metricObj in metricDict.values():
+            entityObj["metrics"].append(metricObj)
+
 
     stringFile = ""
     for val in output.values():
@@ -66,7 +71,6 @@ def getEntityObj(serviceObj, entityName):
     for e in serviceObj["entities"]:
         if e["name"] == entityName:
             return e
-    logger.info("New entity found: %s for the service: %s", entityName, serviceObj["service"])
     e={}
     e["name"]= entityName
     e["metrics"]=[]
@@ -74,18 +78,27 @@ def getEntityObj(serviceObj, entityName):
     return e
 
 # Returns transformed family into metric
-def getMetricObj(family):
-    m={}
-    m["provider_name"] = family.name
-    m["description"] = family.documentation
-    m["type"] = family.type
-    if len(family.samples) == 0:
-        return m
-
-    labels = []
-    for l in family.samples[0].labels.keys():
-        labels.append(l)
-    if len(labels) > 0:
-        m["labels"] = labels 
+def getMetricDict(family):
+    metricAdded = {}
     
-    return m
+    for s in family.samples:
+
+        if s[0] in metricAdded.keys():
+            continue
+
+        m={}
+        m["provider_name"] = s[0]
+        m["description"] = family.documentation
+        m["type"] = family.type
+        if len(family.samples) == 0:
+            return m
+
+        labels = []
+        for l in s[1].keys():
+            labels.append(l)
+        if len(labels) > 0:
+            m["labels"] = labels 
+        
+        metricAdded[ s[0]] = m
+
+    return metricAdded
