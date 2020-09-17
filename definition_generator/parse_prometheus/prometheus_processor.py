@@ -29,8 +29,6 @@ def generate_metrics(prometheus_output_path, url_prometheus):
         serviceName = family.name.split("_")[0]
         entityName = family.name.split("_")[1]
         
-        logger.info(family)
-
         if serviceName in RESERVED_NAMESPACE:
             continue
 
@@ -82,23 +80,25 @@ def getMetricDict(family):
     metricAdded = {}
     
     for s in family.samples:
-
-        if s[0] in metricAdded.keys():
+        
+        sampleName = s[0]
+        sampleLabels = s[1]
+        if sampleName in metricAdded.keys():
             continue
 
         m={}
-        m["provider_name"] = s[0]
+        m["provider_name"] = sampleName
         m["description"] = family.documentation
         m["type"] = family.type
         if len(family.samples) == 0:
             return m
 
         labels = []
-        for l in s[1].keys():
+        for l in sampleLabels.keys():
             labels.append(l)
         if len(labels) > 0:
             m["labels"] = labels 
         
-        metricAdded[ s[0]] = m
+        metricAdded[sampleName] = m
 
     return metricAdded
