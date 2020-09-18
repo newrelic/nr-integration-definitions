@@ -6,7 +6,7 @@ New Relic's integration definitions are (yaml) files that contain the required i
 
 ## Definition files format
 
-See [format](https://github.com/newrelic/nr-integration-definitions/docs/format.md) documentation to get a full description of how the definition files are structured.
+See [format](https://github.com/newrelic/nr-integration-definitions/blob/main/docs/format.md) documentation to get a full description of how the definition files are structured.
 
 ## Testing and Validation
 
