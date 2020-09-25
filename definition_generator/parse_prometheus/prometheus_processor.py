@@ -5,7 +5,7 @@ import requests
 
 from prometheus_client.parser import text_string_to_metric_families
 
-RESERVED_NAMESPACE = []
+RESERVED_NAMESPACE = ["go", "process", "promhttp"]
 logger = logging.getLogger()
 
 
@@ -59,6 +59,7 @@ def getServiceObj(output, serviceName):
     logger.info("New service found: %s", serviceName)
     serviceObj={}
     output[serviceName] = serviceObj
+    serviceObj["provider"] = "prometheus"
     serviceObj["service"]=serviceName
     serviceObj["display_name"]=capitalise(serviceName)
     serviceObj["entities"]=[]
