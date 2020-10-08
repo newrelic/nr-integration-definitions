@@ -10,7 +10,7 @@ Learn how to create your own definitions for the New Relic Prometheus integratio
 ## Introduction
 
 The definition generator is a Python script that helps generate definition files. Definition files can be used to define metrics and entities for the New Relic Prometheus integration (`nri-prometheus`).
- 
+
 The script scrapes Prometheus metrics, translates them to New Relic's format and add them to a definition file. If the endpoint is not reachable, you can use a local file containing Prometheus's output as source.
 
 Here's a sample input file or endpoint output:
@@ -61,7 +61,7 @@ You need to meet the following prerequisites:
 ## 2. <a name='BuildTheImage'></a>Build the image
 
 The script is shipped as a Docker container to provide a standardized environment. When building the image, Docker automatically installs the required libraries and tools.
- 
+
 Build the Docker image `definition_generator` locally:
 
 ``` bash
@@ -72,7 +72,7 @@ $ docker build . -t definition_generator
 Use the resulting image as a working environment for running the script. 
 
 ## 3. <a name='GenerateDefinitionFile'></a>Generate the definition file 
- 
+
 The script scrapes Prometheus metrics, translates them to New Relic's format and add them to a definition file. If the endpoint is not reachable, you can use a local file containing Prometheus's output as source.
 
 ### Using a Prometheus endpoint
