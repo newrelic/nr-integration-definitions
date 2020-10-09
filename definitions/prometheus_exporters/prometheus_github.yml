@@ -1,0 +1,117 @@
+provider: prometheus
+service: github
+display_name: Github
+entities:
+- name: api
+  metrics:
+  - provider_name: github_rate_limit
+    description: Number of API queries allowed in a 60 minute window
+    type: gauge
+  - provider_name: github_rate_remaining
+    description: Number of API queries remaining in the current window
+    type: gauge
+  - provider_name: github_rate_reset
+    description: The time at which the current rate limit window resets in UTC epoch in seconds
+    type: gauge
+- name: repo
+  properties:
+    labels:
+    - user
+    - repo
+  metrics:
+  - provider_name: github_repo_forks
+    description: Total number of forks for given repository
+    type: gauge
+    labels:
+    - archived
+    - fork
+    - language
+    - license
+    - private
+    - repo
+    - user
+  - provider_name: github_repo_open_issues
+    description: Total number of open issues for given repository
+    type: gauge
+    labels:
+    - archived
+    - fork
+    - language
+    - license
+    - private
+    - repo
+    - user
+  - provider_name: github_repo_pull_request_count
+    description: Total number of pull requests for given repository
+    type: gauge
+    labels:
+    - repo
+  - provider_name: github_repo_release_downloads
+    description: Download count for a given release
+    type: gauge
+    labels:
+    - created_at
+    - name
+    - release
+    - repo
+    - user
+  - provider_name: github_repo_size_kb
+    description: Size in KB for given repository
+    type: gauge
+    labels:
+    - archived
+    - fork
+    - language
+    - license
+    - private
+    - repo
+    - user
+  - provider_name: github_repo_stars
+    description: Total number of Stars for given repository
+    type: gauge
+    labels:
+    - archived
+    - fork
+    - language
+    - license
+    - private
+    - repo
+    - user
+  - provider_name: github_repo_watchers
+    description: Total number of watchers/subscribers for given repository
+    type: gauge
+    labels:
+    - archived
+    - fork
+    - language
+    - license
+    - private
+    - repo
+    - user
+### Github Actions exporter entities ###
+- name: actions
+  properties:
+    labels:
+    - repo
+  metrics:
+  - provider_name: github_job
+    description: job status
+    type: gauge
+    labels:
+    - event
+    - head_branch
+    - head_sha
+    - id
+    - node_id
+    - repo
+    - run_number
+    - status
+  - provider_name: github_runner_status
+    description: runner status
+    type: gauge
+    labels:
+    - id
+    - name
+    - os
+    - repo
+    - status

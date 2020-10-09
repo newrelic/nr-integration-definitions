@@ -1,6 +1,6 @@
+provider: prometheus
 service: ravendb
 display_name: Ravendb
-provider: prometheus
 entities:
 - name: node
   metrics:
