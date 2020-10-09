@@ -3,6 +3,8 @@ service: github
 display_name: Github
 entities:
 - name: job
+  labels:
+  - id
   metrics:
   - provider_name: github_job
     description: job status
@@ -17,6 +19,8 @@ entities:
     - run_number
     - status
 - name: runner
+  labels:
+  - id
   metrics:
   - provider_name: github_runner_status
     description: runner status
