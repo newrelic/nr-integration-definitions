@@ -35,7 +35,7 @@ entities:
     type: gauge
 - name: database
   properties:
-    dimensions: [database]
+    labels: [database]
   metrics:
   - provider_name: ravendb_database_document_put_bytes_total
     description: Database document put bytes
