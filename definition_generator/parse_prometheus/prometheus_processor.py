@@ -2,12 +2,35 @@ import os
 import yaml
 import logging
 import requests
+import re
 
 from prometheus_client.parser import text_string_to_metric_families
 
 RESERVED_NAMESPACE = ["go", "process", "promhttp"]
 logger = logging.getLogger()
 
+DEFAULT_UNIT = 'count'
+
+# These are suffixes. Order matters! First match will be applied.
+UNITS_MAPPING = {
+    'percent': 'percent',
+    'rate': 'percent',
+    'milliseconds': 'milliseconds',
+    'miliseconds': 'milliseconds',
+    'seconds': 'seconds',
+    'bytes': 'bytes',
+    'bytesPerSecond': 'bytesPerSecond',
+    'Ratio': 'percent', 
+    'kb': 'kilobytes',
+    'kbps': 'kilobytesPerSecond',
+    'latency': 'milliseconds',
+    'latencies': 'milliseconds',
+    r'(network|write|read)[a-z]*throughput': 'bytesPerSecond',
+    'throughput': 'countPerSecond',
+    'bytesps': 'bytesPerSecond',
+    'countps': 'countPerSecond',
+    'uptime': 'seconds', 
+}
 
 def generate_metrics(prometheus_output_path, url_prometheus):
 
@@ -91,6 +114,7 @@ def getMetricDict(family):
         m["provider_name"] = sampleName
         m["description"] = family.documentation
         m["type"] = family.type
+        m["unit"] = get_metric_unit(sampleName)
         if len(family.samples) == 0:
             return m
 
@@ -103,3 +127,15 @@ def getMetricDict(family):
         metricAdded[sampleName] = m
 
     return metricAdded
+
+def get_metric_unit(metricName):
+    '''
+    Try to determine unit from metric name based on the list of base units.
+    Return None if it cannot be determined.
+    '''
+    for unit in UNITS_MAPPING.keys():
+        # if re.compile(unit.lower()+"$").search(metricName.lower()):
+        if re.compile("_" + unit.lower() + "_").search(metricName.lower()):
+            return UNITS_MAPPING[unit]
+
+    return DEFAULT_UNIT
