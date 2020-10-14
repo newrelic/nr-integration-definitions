@@ -96,13 +96,13 @@
                     "GigabytesPerSecond",
                     "Gibibytes",
                     "Mebibytes",
-                    "Dbm",
+                    "dBm",
                     "Gigabytes",
                     "Terabytes",
                     "Megahertz",
                     "Watt",
                     "Joule",
-                    "other"
+                    "Other"
                   ]
                 },
                 "description": {
