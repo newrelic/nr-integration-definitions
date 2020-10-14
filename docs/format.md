@@ -49,7 +49,11 @@ entities: # Non-empty list of entity definitions. Required.
         # Description of the metric. In the exporter output, it appears commented using `# HELP`.
         description: string, required
         # Type of metric. In the exporter output, it appears commented using # TYPE.
-        type: Counter | Gauge | Summary | Histogram # default?
+        type: counter | gauge | summary | histogram
+        # Unit that the metric value represents, it is usually specified at the last part of the name.
+        # For example ravendb_database_size_bytes will be "bytes". 
+        # Full list can be found here https://github.com/newrelic/nr-integration-definitions/blob/main/validator/schema-v1.json#L77
+        unit: Count | Percent | Seconds | Milliseconds | Bytes | BytesPerSecond | Kilobytes | ... 
         # list of labels that the metric has e.g. [label1, label2, label3]
         labels: list, optional
 ```

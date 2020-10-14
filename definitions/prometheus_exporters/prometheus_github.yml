@@ -7,12 +7,15 @@ entities:
   - provider_name: github_rate_limit
     description: Number of API queries allowed in a 60 minute window
     type: gauge
+    unit: Count
   - provider_name: github_rate_remaining
     description: Number of API queries remaining in the current window
     type: gauge
+    unit: Count
   - provider_name: github_rate_reset
     description: The time at which the current rate limit window resets in UTC epoch in seconds
     type: gauge
+    unit: Seconds
 - name: repo
   properties:
     labels:
@@ -22,6 +25,7 @@ entities:
   - provider_name: github_repo_forks
     description: Total number of forks for given repository
     type: gauge
+    unit: Count
     labels:
     - archived
     - fork
@@ -33,6 +37,7 @@ entities:
   - provider_name: github_repo_open_issues
     description: Total number of open issues for given repository
     type: gauge
+    unit: Count
     labels:
     - archived
     - fork
@@ -44,11 +49,13 @@ entities:
   - provider_name: github_repo_pull_request_count
     description: Total number of pull requests for given repository
     type: gauge
+    unit: Count
     labels:
     - repo
   - provider_name: github_repo_release_downloads
     description: Download count for a given release
     type: gauge
+    unit: Count
     labels:
     - created_at
     - name
@@ -58,6 +65,7 @@ entities:
   - provider_name: github_repo_size_kb
     description: Size in KB for given repository
     type: gauge
+    unit: Kilobytes
     labels:
     - archived
     - fork
@@ -69,6 +77,7 @@ entities:
   - provider_name: github_repo_stars
     description: Total number of Stars for given repository
     type: gauge
+    unit: Count
     labels:
     - archived
     - fork
@@ -80,6 +89,7 @@ entities:
   - provider_name: github_repo_watchers
     description: Total number of watchers/subscribers for given repository
     type: gauge
+    unit: Count
     labels:
     - archived
     - fork
@@ -97,6 +107,7 @@ entities:
   - provider_name: github_job
     description: job status
     type: gauge
+    unit: Count
     labels:
     - event
     - head_branch
@@ -109,6 +120,7 @@ entities:
   - provider_name: github_runner_status
     description: runner status
     type: gauge
+    unit: Count
     labels:
     - id
     - name
