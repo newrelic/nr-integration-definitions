@@ -9,27 +9,27 @@ from prometheus_client.parser import text_string_to_metric_families
 RESERVED_NAMESPACE = ["go", "process", "promhttp"]
 logger = logging.getLogger()
 
-DEFAULT_UNIT = 'count'
+DEFAULT_UNIT = 'Count'
 
 # These are suffixes. Order matters! First match will be applied.
 UNITS_MAPPING = {
-    'percent': 'percent',
-    'rate': 'percent',
-    'milliseconds': 'milliseconds',
-    'miliseconds': 'milliseconds',
-    'seconds': 'seconds',
-    'bytes': 'bytes',
-    'bytesPerSecond': 'bytesPerSecond',
-    'Ratio': 'percent', 
-    'kb': 'kilobytes',
-    'kbps': 'kilobytesPerSecond',
-    'latency': 'milliseconds',
-    'latencies': 'milliseconds',
-    r'(network|write|read)[a-z]*throughput': 'bytesPerSecond',
-    'throughput': 'countPerSecond',
-    'bytesps': 'bytesPerSecond',
-    'countps': 'countPerSecond',
-    'uptime': 'seconds', 
+    'percent': 'Percent',
+    'rate': 'Percent',
+    'milliseconds': 'Milliseconds',
+    'miliseconds': 'Milliseconds',
+    'seconds': 'Seconds',
+    'bytes': 'Bytes',
+    'bytesPerSecond': 'BytesPerSecond',
+    'Ratio': 'Percent', 
+    'kb': 'Kilobytes',
+    'kbps': 'KilobytesPerSecond',
+    'latency': 'Milliseconds',
+    'latencies': 'Milliseconds',
+    r'(network|write|read)[a-z]*throughput': 'BytesPerSecond',
+    'throughput': 'CountPerSecond',
+    'bytesps': 'BytesPerSecond',
+    'countps': 'CountPerSecond',
+    'uptime': 'Seconds', 
 }
 
 def generate_metrics(prometheus_output_path, url_prometheus):

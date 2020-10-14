@@ -53,7 +53,7 @@ entities: # Non-empty list of entity definitions. Required.
         # Unit that the metric value represents, it is usually specified at the last part of the name.
         # For example ravendb_database_size_bytes will be "bytes". 
         # Full list can be found here https://github.com/newrelic/nr-integration-definitions/blob/main/validator/schema-v1.json#L77
-        unit: count | percent | seconds | milliseconds | bytes | bytesPerSecond | kilobytes | ... 
+        unit: Count | Percent | Seconds | Milliseconds | Bytes | BytesPerSecond | Kilobytes | ... 
         # list of labels that the metric has e.g. [label1, label2, label3]
         labels: list, optional
 ```
