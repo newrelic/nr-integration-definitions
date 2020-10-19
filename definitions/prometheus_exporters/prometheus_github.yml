@@ -51,7 +51,13 @@ entities:
     type: gauge
     unit: Count
     labels:
+    - archived
+    - fork
+    - language
+    - license
+    - private
     - repo
+    - user
   - provider_name: github_repo_release_downloads
     description: Download count for a given release
     type: gauge
@@ -60,6 +66,11 @@ entities:
     - created_at
     - name
     - release
+    - archived
+    - fork
+    - language
+    - license
+    - private
     - repo
     - user
   - provider_name: github_repo_size_kb
