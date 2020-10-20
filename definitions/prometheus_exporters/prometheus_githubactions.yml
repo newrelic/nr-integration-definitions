@@ -1,0 +1,32 @@
+provider: prometheus
+service: github
+display_name: Github Actions
+entities:
+- name: actions
+  properties:
+    labels:
+    - repo
+  metrics:
+  - provider_name: github_job
+    description: job status
+    type: gauge
+    unit: Count
+    labels:
+    - event
+    - head_branch
+    - head_sha
+    - id
+    - node_id
+    - repo
+    - run_number
+    - status
+  - provider_name: github_runner_status
+    description: runner status
+    type: gauge
+    unit: Count
+    labels:
+    - id
+    - name
+    - os
+    - repo
+    - status
